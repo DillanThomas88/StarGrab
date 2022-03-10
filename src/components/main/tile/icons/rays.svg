@@ -1,0 +1,28 @@
+<svg width="128pt" height="128pt" version="1.1" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+ <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width=".6153">
+  <path transform="scale(1.5059)" d="m32.199 3.4993 6.8015 25.8"/>
+  <path transform="scale(1.5059)" d="m14 13.901 18.9 18.9"/>
+  <path transform="scale(1.5059)" d="m3.4993 32 25.8 7.0012"/>
+  <path transform="scale(1.5059)" d="m3.4993 52.899 25.8-6.9"/>
+  <path transform="scale(1.5059)" d="m13.901 71 18.9-18.801"/>
+  <path transform="scale(1.5059)" d="m32 81.501 7.0012-25.8"/>
+  <path transform="scale(1.5059)" d="m52.899 81.599-6.9-25.898"/>
+  <path transform="scale(1.5059)" d="m71 71.2-18.801-19.001"/>
+  <path transform="scale(1.5059)" d="m81.501 53.099-25.8-6.9986"/>
+  <path transform="scale(1.5059)" d="m81.599 32.199-25.898 6.8015"/>
+  <path transform="scale(1.5059)" d="m71.2 14-19.001 18.9"/>
+  <path transform="scale(1.5059)" d="m53.099 3.4993-6.9986 25.8"/>
+  <path transform="scale(1.5059)" d="m42.899 33.901v-23.102"/>
+  <path transform="scale(1.5059)" d="m38.5 34.801-11.499-20.002"/>
+  <path transform="scale(1.5059)" d="m35.2 37.901-20-11.6"/>
+  <path transform="scale(1.5059)" d="m33.901 42.101h-23.102"/>
+  <path transform="scale(1.5059)" d="m34.801 46.5-20.002 11.6"/>
+  <path transform="scale(1.5059)" d="m37.901 49.8-11.6 20"/>
+  <path transform="scale(1.5059)" d="m42.101 51.2v23.1"/>
+  <path transform="scale(1.5059)" d="m46.5 50.199 11.6 20.002"/>
+  <path transform="scale(1.5059)" d="m49.8 47.2 20 11.499"/>
+  <path transform="scale(1.5059)" d="m51.2 42.899h23.1"/>
+  <path transform="scale(1.5059)" d="m50.199 38.5 20.002-11.499"/>
+  <path transform="scale(1.5059)" d="m47.2 35.2 11.499-20"/>
+ </g>
+</svg>
