@@ -27,16 +27,25 @@ function Main() {
 
     const handleSelected = (e) => {
         const tile = e.target
+        const border = tile.children[0].children[0].children[0]
+        console.log(border);
         if (tile.classList.contains('tile')) {
-            if (tile.classList.contains('animate-deSelect')) {
-                tile.className = ('tile animate-select')
+            if (border.classList.contains('rounded-md')) {
+                border.classList.toggle('rounded-md')
+
+                border.classList.toggle('rounded-full')
+                border.classList.toggle('animate-select')
+
                 return
 
-            } else if (tile.classList.contains('animate-select')) {
-                tile.className = ('tile animate-deSelect')
+            }
+            if(border.classList.contains('rounded-full')){
+                border.classList.toggle('rounded-full')
+
+                border.classList.toggle('rounded-md')
+                border.classList.toggle('animate-select')
                 return
             }
-            tile.classList.toggle('animate-select')
         }
 
     }
@@ -67,8 +76,8 @@ function Main() {
         const staggerFolding = (element, j) => {
             let timer = setInterval(() => {
                 clearInterval(timer)
-                element[j].children[0].className = 'absolute h-full w-full animate-foldIn'
-                element[j].children[1].className = 'absolute h-full w-full animate-foldOut'
+                element[j].children[0].classList.toggle('animate-foldIn')
+                element[j].children[1].classList.toggle('animate-foldOut')
                 j++
                 if (j >= gridSize) { return }
                 staggerFolding(element, j)
@@ -93,14 +102,14 @@ function Main() {
     return (
         <div
             className="grid  content-center justify-center w-screen">
-            <div onClick={(e) => handleSelected(e)} className="grid grid-rows-6 grid-cols-6">
+            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6">
                 {board()}
             </div>
-            <div className='fixed grid content-center justify-center w-full  h-full top-0'>
-                <div className='fixed z-40 top-0 w-full h-full bg-black opacity-50'>
+            <div className='z-30 fixed grid content-center justify-center w-full  h-full top-0'>
+                <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
                 </div>
 
-                <button className=' z-50 text-5xl border-2 bg-gradient-to-tr from-rose-600 to-rose-500 shadow-lg shadpw-neutra;-500  px-4 py-2 rounded-3xl shadow-sl shadow-black'
+                <button className='z-50 text-5xl border-2 bg-gradient-to-tr from-rose-600 to-rose-500 shadow-lg shadpw-neutra;-500  px-4 py-2 rounded-3xl shadow-sl shadow-black mb-48'
                     onClick={(e) => handleFoldingAnimations(e)}>
                     <Icon data={{ desc: 'play' }} />
                 </button>

@@ -17,7 +17,7 @@ function Icon({ index, type, data }) {
             classes = `h-5 w-5 text-white m-2 `
             break;
         case 'large':
-            classes = `h-16 w-16 text-white animate-swivel`
+            classes = `absolute text-white h-full w-full animate-swivel pb-1`
             break;
         case 'background':
             classes = `text-neutral-700 h-28 w-28`
@@ -26,7 +26,7 @@ function Icon({ index, type, data }) {
             classes = `text-white h-28 w-28 pointer-events-none`
             break;
         case 'detail':
-            classes = `absolute animate-clockwise h-full w-full opacity-10 text-white grid content-center justify-center pointer-events-none`
+            classes = `absolute h-full w-full animate-clockwise opacity-10 text-white grid content-center justify-center pointer-events-none`
             break;
         case 'score':
             classes = `h-16 w-16 text-white`

@@ -8,12 +8,16 @@ function Player({ props }) {
     let theirNumber = (Math.floor(Math.random() * 13) - 7)
     return (<>
         {props.data === true &&
-            <div className=" my-10 mx-56 flex justify-between items-center">
+            <div className="flex justify-between mt-5">
+                <div className="grid content-center justify-center w-80">
+                    <div className="text-center mb-1 font-thin text-lg">{props.number}</div>
+                    <div className="text-center font-medium text-xl">{props.name}</div>
+                </div>
                 <div
-                    className=" bg-gradient-to-t from-neutral-200 to-neutral-100 text-neutral-700 font-semibold text-6xl border border-white rounded-xl text-center flex items-center justify-center w-20 h-20">
+                    className="bg-gradient-to-t from-neutral-200 to-neutral-100 text-neutral-700 font-semibold text-6xl border border-white rounded-xl text-center flex items-center justify-center w-20 h-20">
                     {yourNumber}
                 </div>
-                <div className="flex justify-center items-center opacity-80">
+                <div className="flex justify-center items-center opacity-80 w-80">
                     <Icon data={{ desc: 'score' }} />
                     <div className="text-4xl">= 0</div>
                 </div>

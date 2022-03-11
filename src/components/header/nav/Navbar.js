@@ -13,7 +13,7 @@ function NavBar() {
       </div>
       <a href="/">
         <p className="flex text-center text-3xl lg:text-5xl uppercase font-medium text-neutral-100">
-          Stars
+          NEXUS
         </p>
       </a>
       <div className=" flex">

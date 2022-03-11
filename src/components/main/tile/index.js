@@ -37,12 +37,12 @@ function Tile({ index }) {
                     border: 'border-rose-500'
                 }
                 break;
-    
+
             default:
                 break;
         }
     }
-    
+
     let colorObj = getColors(type)
 
     return (
@@ -51,28 +51,28 @@ function Tile({ index }) {
             datacolor={type}
             row={index.row}
             col={index.col}
-            className={`relative fold-target lg:h-36 lg:w-28  pointer-events-none text-white font-medium  m-1 rounded-md grid text-3xl`}>
+            className={`relative fold-target h-28 w-28 pointer-events-none text-white font-normal  m-1 rounded-md grid text-7xl`}>
             <div className='absolute h-full w-full'>
-                <div className={` ${colorObj.bg} overflow-hidden border-4 border-neutral-200 shadow shadow-lg grid h-full w-full content-between  rounded-md `}>
-                    <div className="mx-2 flex justify-between items-center text-center">
-                        <div>{number}</div>
-                        {isLucky < 5 && <Icon index={number} type={colorObj} data={{ desc: 'small' }} />}
-                    </div>
-                    <div className="relative flex justify-center ">
-                        {isLucky < 5 && <>
-                        <Icon index={number} type={colorObj} data={{ desc: 'large' }} />
-                        <Icon data={{desc:'detail'}} />
+                <div className={` ${colorObj.bg} overflow-hidden  border-4 border-neutral-200  h-full w-full  rounded-md `}>
+                    {isLucky > 5
+                        ? <>
+                            <div className="relative grid content-center justify-center text-center h-full font-default">
+                                {number}
+                            </div>
+                        </>
+                        : <>
+                            <div className={`relative grid content-center justify-center text-center ${colorObj.text} h-full`}>
+                                <Icon data={{desc: 'large'}} />
+                                <Icon data={{desc: 'detail'}} />
+                                <div className='z-10 pt-1 text-5xl font-bold'>{number}</div>
+                            </div>
+
                         </>}
-                    </div>
-                    <div className="mx-2 rotate-180 flex justify-between items-center">
-                        {number}
-                        {isLucky < 5 && <Icon index={number} type={colorObj} data={{ desc: 'small' }} />}
-                    </div>
                 </div>
             </div>
-            <div className=' absolute w-full h-full'>
+            <div className='z-10 absolute w-full h-full pointer-events-none'>
                 <div className={` bg-gradient-to-tr from-neutral-300 to-neutral-200 overflow-hidden grid h-full w-full justify-center content-center border-2 border-white rounded-md `}>
-                <Icon index={number} type={colorObj} data={{ desc: 'background' }} />
+                    <Icon index={number} type={colorObj} data={{ desc: 'background' }} />
                 </div>
 
             </div>

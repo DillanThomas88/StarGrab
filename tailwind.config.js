@@ -3,18 +3,18 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'montserrat': ['Montserrat'],
+        default: ['Montserrat']
       },
       animation: {
         fadeIn: 'fade .525s reverse',
         fadeOut: 'fade .525s forwards',
         attention: 'attention 2.1s infinite ',
-        select: 'select .05s forwards',
-        deSelect: 'select .05s reverse',
         swivel: 'swivel 1.05s infinite',
         foldOut: 'fold .4s forwards',
         foldIn: 'fold .4s reverse',
-        clockwise: 'rotate 21s infinite linear'
+        clockwise: 'rotate 21s infinite linear',
+        select: 'select .3s forwards',
+        deselect: 'select .3s reverse',
       },
       keyframes: {
         fade: {
@@ -30,8 +30,10 @@ module.exports = {
           '100%': { transform: 'scale(.9)'  },
         },
         select: {
-          from: {transform: 'scale(1)', opacity: 1},
-          to: {transform: 'scale(.9)', opacity: .3}
+          '0%': { transform: 'scale(1)'},
+          '15%': { transform: 'scale(1.1)'},
+          '30%': { transform: 'scale(1)'},
+          '100%': { transform: 'scale(1)'},
         },
         swivel: {
           '0%': {transform: 'rotate(15deg)'},
