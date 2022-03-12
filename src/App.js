@@ -18,9 +18,9 @@ function App() {
         {/* <Header /> */}
       </header>
       <main className=" grid  content-start">
-        <div className='grid text-center my-8'>
-          <div className='text-3xl lg:text-5xl uppercase'>Star Grab</div>
-          <div className='text-lg lg:text-xl'>Collect 10 stars to win !</div>
+        <div className='grid text-center my-4'>
+          <div className='text-3xl sm:text-5xl uppercase'>Star Grab</div>
+          <div className='text-lg sm:text-xl'>Collect 10 stars to win !</div>
 
         </div>
         <Main />

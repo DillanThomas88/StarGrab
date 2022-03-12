@@ -45,7 +45,7 @@ function Main() {
             }
             if (chilData.getAttribute('star') === 'true') obj.star = obj.number
 
-            if (border.classList.contains(`lg:rounded-md` || 'rounded-sm')) {
+            if (border.classList.contains(`sm:rounded-md` || 'rounded-sm')) {
 
                 if (!selectObj.color) {
                     selectObj.color = chilData.getAttribute('datacolor')
@@ -59,8 +59,8 @@ function Main() {
                 // ! apply style
                 console.log(window.innerWidth);
                 if(window.innerWidth > 400){
-                    border.classList.toggle(`lg:rounded-md`)
-                    border.classList.toggle(`lg:rounded-full`)
+                    border.classList.toggle(`sm:rounded-md`)
+                    border.classList.toggle(`sm:rounded-full`)
                     border.classList.toggle('animate-select')
                     border.classList.toggle('selected')
 
@@ -72,7 +72,7 @@ function Main() {
                     border.classList.toggle('selected')
                 }
 
-            } else if (border.classList.contains(`lg:rounded-full` || 'rounded-full')) {
+            } else if (border.classList.contains(`sm:rounded-full` || 'rounded-full')) {
 
                 // console.log(selectObj.array);
                 const o = selectObj.array.filter(data => {
@@ -84,8 +84,8 @@ function Main() {
 
                 // ! apply style
                 if(window.innerWidth > 400){
-                    border.classList.toggle(`lg:rounded-full`)
-                    border.classList.toggle(`lg:rounded-md`)
+                    border.classList.toggle(`sm:rounded-full`)
+                    border.classList.toggle(`sm:rounded-md`)
                     border.classList.toggle('animate-select')
                     border.classList.toggle('selected')
 
@@ -171,14 +171,14 @@ function Main() {
     return (
         <div
             className="grid  content-center justify-center w-screen">
-            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6 gap-1 lg:gap-2">
+            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6 gap-1 sm:gap-2">
                 {board()}
             </div>
             <div className='z-30 fixed grid content-center justify-center w-full  h-full top-0'>
                 <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
                 </div>
 
-                <button className='z-50 text-5xl border-2 bg-gradient-to-tr from-rose-600 to-rose-500 shadow-lg shadpw-neutra;-500  px-4 py-2 rounded-3xl shadow-sl shadow-black'
+                <button className='z-50 text-5xl border-2 bg-gradient-to-tr from-rose-600 to-rose-500 shadow-lg shadow-neutral-500   rounded-3xl shadow-sl shadow-black'
                     onClick={(e) => handleFoldingAnimations(e)}>
                     <Icon data={{ desc: 'play' }} />
                 </button>
