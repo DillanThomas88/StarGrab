@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Tile from './tile'
 import Icon from './tile/icons'
-import Player from './player'
+import Player from '../playercards/player'
 
 function Main() {
 
@@ -29,7 +29,6 @@ function Main() {
         color: undefined,
         array: [],
         total: 0,
-        starTotal: 0
     }
     const handleSelected = (e) => {
         const tile = e.target
@@ -45,7 +44,9 @@ function Main() {
                 star: 0
             }
             if (chilData.getAttribute('star') === 'true') obj.star = obj.number
-            if (border.classList.contains('rounded-md')) {
+
+            if (border.classList.contains(`lg:rounded-md` || 'rounded-sm')) {
+
                 if (!selectObj.color) {
                     selectObj.color = chilData.getAttribute('datacolor')
                 }
@@ -56,11 +57,23 @@ function Main() {
                 }
 
                 // ! apply style
-                border.classList.toggle('rounded-md')
-                border.classList.toggle('rounded-full')
-                border.classList.toggle('animate-select')
+                console.log(window.innerWidth);
+                if(window.innerWidth > 400){
+                    border.classList.toggle(`lg:rounded-md`)
+                    border.classList.toggle(`lg:rounded-full`)
+                    border.classList.toggle('animate-select')
+                    border.classList.toggle('selected')
 
-            } else if (border.classList.contains('rounded-full')) {
+                } else{
+                    console.log(window.innerWidth);
+                    border.classList.toggle(`rounded-sm`)
+                    border.classList.toggle(`rounded-full`)
+                    border.classList.toggle('animate-select')
+                    border.classList.toggle('selected')
+                }
+
+            } else if (border.classList.contains(`lg:rounded-full` || 'rounded-full')) {
+
                 // console.log(selectObj.array);
                 const o = selectObj.array.filter(data => {
                     return data.row + data.col != obj.row + obj.col
@@ -70,24 +83,31 @@ function Main() {
                 if (selectObj.array.length === 0) selectObj.color = undefined
 
                 // ! apply style
-                border.classList.toggle('rounded-full')
-                border.classList.toggle('rounded-md')
-                border.classList.toggle('animate-select')
+                if(window.innerWidth > 400){
+                    border.classList.toggle(`lg:rounded-full`)
+                    border.classList.toggle(`lg:rounded-md`)
+                    border.classList.toggle('animate-select')
+                    border.classList.toggle('selected')
+
+                } else{
+                    border.classList.toggle(`rounded-full`)
+                    border.classList.toggle(`rounded-md`)
+                    border.classList.toggle('animate-select')
+                    border.classList.toggle('selected')
+                }
             }
 
             // ! calculate scoreing obj
             selectObj.total = 0
-            selectObj.starTotal = 0
             selectObj.array.forEach(element => {
                 selectObj.total += element.number
-                selectObj.starTotal += element.star
             });
 
             const players = document.querySelectorAll('.player-btn')
             const buttons = document.querySelectorAll('.collect-btn')
-            console.log(players[0].innerHTML);
             if(parseInt(players[0].innerHTML) === selectObj.total){
                 buttons[0].classList.toggle('animate-collect')
+
             } else {
                 if(buttons[0].classList.contains('animate-collect')){
                     buttons[0].classList.toggle('animate-collect')
@@ -151,7 +171,7 @@ function Main() {
     return (
         <div
             className="grid  content-center justify-center w-screen">
-            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6">
+            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6 gap-1 lg:gap-2">
                 {board()}
             </div>
             <div className='z-30 fixed grid content-center justify-center w-full  h-full top-0'>

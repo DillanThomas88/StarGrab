@@ -51,12 +51,12 @@ function Tile({ index }) {
             row={index.row}
             col={index.col}
             star={isLucky <= 5 ? 'true' : 'false'}
-            className={`relative fold-target h-28 w-28 pointer-events-none text-white font-normal  m-1 rounded-md grid text-7xl`}>
+            className={`relative fold-target h-14 w-14 lg:h-28 lg:w-28 pointer-events-none text-white font-normal rounded-md grid  text-2xl lg:text-7xl`}>
             <div className='absolute h-full w-full'>
-                <div className={` ${colorObj.bg} overflow-hidden  border-4 border-neutral-200  h-full w-full  rounded-md `}>
+                <div className={` ${colorObj.bg} overflow-hidden border-2 lg:border-4 border-neutral-200  h-full w-full rounded-sm lg:rounded-md `}>
                     {isLucky > 5
                         ? <>
-                            <div className="relative grid content-center justify-center text-center h-full font-default">
+                            <div className="relative grid content-center justify-center text-center h-full">
                                 {number}
                             </div>
                         </>
@@ -64,7 +64,7 @@ function Tile({ index }) {
                             <div className={`relative grid content-center justify-center text-center ${colorObj.text} h-full`}>
                                 <Icon data={{desc: 'large'}} />
                                 <Icon data={{desc: 'detail'}} />
-                                <div className='z-10 pt-1 text-4xl font-bold'>{number}</div>
+                                <div className='z-10 pt-1 text-xl lg:text-4xl font-bold'>{number}</div>
                             </div>
 
                         </>}
