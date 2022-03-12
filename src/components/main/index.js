@@ -42,7 +42,7 @@ function Main() {
 
             let styleArray = []
             if (window.innerWidth > 400) {
-                styleArray = ['sm:rounded-md', 'sm:rounded-full']
+                styleArray = ['md:rounded-md', 'md:rounded-full']
             } else {
                 styleArray = ['rounded-sm', 'rounded-full']
             }
@@ -159,7 +159,7 @@ function Main() {
     return (
         <div
             className="grid  content-center justify-center w-screen">
-            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6 gap-1 sm:gap-2">
+            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6 gap-1 md:gap-2 lg:gap-1">
                 {board().map((data, index) => {
                     return (
                         <div className='tile' key={index} >
