@@ -5,7 +5,6 @@ function Tile({ index }) {
     let number = Math.floor(Math.random() * 13 + 1)
     let type = Math.floor(Math.random() * 4 + 1)
     let isLucky = Math.floor(Math.random() * 100)
-    console.log('object');
 
     const getColors = () => {
         switch (type) {
@@ -51,6 +50,7 @@ function Tile({ index }) {
             datacolor={type}
             row={index.row}
             col={index.col}
+            star={isLucky <= 5 ? 'true' : 'false'}
             className={`relative fold-target h-28 w-28 pointer-events-none text-white font-normal  m-1 rounded-md grid text-7xl`}>
             <div className='absolute h-full w-full'>
                 <div className={` ${colorObj.bg} overflow-hidden  border-4 border-neutral-200  h-full w-full  rounded-md `}>
@@ -64,7 +64,7 @@ function Tile({ index }) {
                             <div className={`relative grid content-center justify-center text-center ${colorObj.text} h-full`}>
                                 <Icon data={{desc: 'large'}} />
                                 <Icon data={{desc: 'detail'}} />
-                                <div className='z-10 pt-1 text-5xl font-bold'>{number}</div>
+                                <div className='z-10 pt-1 text-4xl font-bold'>{number}</div>
                             </div>
 
                         </>}

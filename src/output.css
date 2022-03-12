@@ -508,20 +508,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 0.5rem;
 }
 
-.mt-32{
-  margin-top: 8rem;
-}
-
-.mb-5{
-  margin-bottom: 1.25rem;
-}
-
 .mt-5{
   margin-top: 1.25rem;
 }
 
-.mb-48{
-  margin-bottom: 12rem;
+.mb-5{
+  margin-bottom: 1.25rem;
 }
 
 .mb-1{
@@ -588,6 +580,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 4rem;
 }
 
+.scale-110{
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 @-webkit-keyframes select{
   0%{
     -webkit-transform: scale(1);
@@ -595,8 +594,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   15%{
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 
   30%{
@@ -617,34 +616,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   15%{
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-  }
-
-  30%{
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-
-  100%{
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
-.animate-deselect{
-  animation: select .3s reverse;
-}
-
-@keyframes select{
-  0%{
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-
-  15%{
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 
   30%{
@@ -659,8 +632,53 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .animate-select{
-  -webkit-animation: select .3s forwards;
-          animation: select .3s forwards;
+  -webkit-animation: select .5s forwards;
+          animation: select .5s forwards;
+}
+
+@-webkit-keyframes collect{
+  0%{
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+
+  50%{
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+
+  100%{
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes collect{
+  0%{
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+
+  50%{
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+
+  100%{
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-collect{
+  -webkit-animation: collect 1s infinite;
+          animation: collect 1s infinite;
 }
 
 @-webkit-keyframes fade{
@@ -838,10 +856,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   align-content: flex-start;
 }
 
-.content-between{
-  align-content: space-between;
-}
-
 .items-center{
   align-items: center;
 }
@@ -930,6 +944,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
+.bg-white{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-neutral-100{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-tr{
   background-image: linear-gradient(to top right, var(--tw-gradient-stops));
 }
@@ -946,11 +970,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .from-neutral-800{
   --tw-gradient-from: #262626;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(38 38 38 / 0));
-}
-
-.from-neutral-200{
-  --tw-gradient-from: #e5e5e5;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(229 229 229 / 0));
 }
 
 .from-neutral-700{
@@ -984,10 +1003,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .to-neutral-700{
   --tw-gradient-to: #404040;
-}
-
-.to-neutral-100{
-  --tw-gradient-to: #f5f5f5;
 }
 
 .to-neutral-600{
@@ -1134,10 +1149,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 0.5;
 }
 
-.opacity-80{
-  opacity: 0.8;
-}
-
 .opacity-10{
   opacity: 0.1;
 }
@@ -1156,6 +1167,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .shadow-neutral-500{
   --tw-shadow-color: #737373;
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.filter{
+  -webkit-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+          filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 @media (min-width: 768px){

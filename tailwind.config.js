@@ -13,8 +13,9 @@ module.exports = {
         foldOut: 'fold .4s forwards',
         foldIn: 'fold .4s reverse',
         clockwise: 'rotate 21s infinite linear',
-        select: 'select .3s forwards',
-        deselect: 'select .3s reverse',
+        select: 'select .5s forwards',
+        deselect: 'select .5s reverse',
+        collect: 'collect 1s infinite'
       },
       keyframes: {
         fade: {
@@ -31,7 +32,7 @@ module.exports = {
         },
         select: {
           '0%': { transform: 'scale(1)'},
-          '15%': { transform: 'scale(1.1)'},
+          '15%': { transform: 'scale(1.2)'},
           '30%': { transform: 'scale(1)'},
           '100%': { transform: 'scale(1)'},
         },
@@ -48,6 +49,11 @@ module.exports = {
         rotate: {
           from: {transform: 'rotate(0deg) scale(2)'},
           to:  {transform: 'rotate(359deg) scale(2)'}
+        },
+        collect: {
+          '0%': { transform: 'scale(1)', opacity: 1},
+          '50%': { transform: 'scale(1.5)', opacity: 0},
+          '100%': { transform: 'scale(1.5)', opacity: 0},
         }
 
 

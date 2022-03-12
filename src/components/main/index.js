@@ -25,27 +25,76 @@ function Main() {
         return board
     }
 
+    let selectObj = {
+        color: undefined,
+        array: [],
+        total: 0,
+        starTotal: 0
+    }
     const handleSelected = (e) => {
         const tile = e.target
+        const chilData = e.target.children[0]
         const border = tile.children[0].children[0].children[0]
-        console.log(border);
+        // console.log(chilData.getAttribute('datacolor'));
+
         if (tile.classList.contains('tile')) {
+            let obj = {
+                row: chilData.getAttribute('row'),
+                col: chilData.getAttribute('col'),
+                number: parseInt(chilData.getAttribute('datanum')),
+                star: 0
+            }
+            if (chilData.getAttribute('star') === 'true') obj.star = obj.number
             if (border.classList.contains('rounded-md')) {
-                border.classList.toggle('rounded-md')
+                if (!selectObj.color) {
+                    selectObj.color = chilData.getAttribute('datacolor')
+                }
+                // ! return
+                if (selectObj.color !== chilData.getAttribute('datacolor')) return
+                else {
+                    selectObj.array.push(obj)
+                }
 
+                // ! apply style
+                border.classList.toggle('rounded-md')
                 border.classList.toggle('rounded-full')
                 border.classList.toggle('animate-select')
 
-                return
+            } else if (border.classList.contains('rounded-full')) {
+                // console.log(selectObj.array);
+                const o = selectObj.array.filter(data => {
+                    return data.row + data.col != obj.row + obj.col
+                })
+                selectObj.array = o
+                // console.log(selectObj.array);
+                if (selectObj.array.length === 0) selectObj.color = undefined
 
-            }
-            if(border.classList.contains('rounded-full')){
+                // ! apply style
                 border.classList.toggle('rounded-full')
-
                 border.classList.toggle('rounded-md')
                 border.classList.toggle('animate-select')
-                return
             }
+
+            // ! calculate scoreing obj
+            selectObj.total = 0
+            selectObj.starTotal = 0
+            selectObj.array.forEach(element => {
+                selectObj.total += element.number
+                selectObj.starTotal += element.star
+            });
+
+            const players = document.querySelectorAll('.player-btn')
+            const buttons = document.querySelectorAll('.collect-btn')
+            console.log(players[0].innerHTML);
+            if(parseInt(players[0].innerHTML) === selectObj.total){
+                buttons[0].classList.toggle('animate-collect')
+            } else {
+                if(buttons[0].classList.contains('animate-collect')){
+                    buttons[0].classList.toggle('animate-collect')
+                }
+            }
+
+            // console.log(selectObj);
         }
 
     }
@@ -109,7 +158,7 @@ function Main() {
                 <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
                 </div>
 
-                <button className='z-50 text-5xl border-2 bg-gradient-to-tr from-rose-600 to-rose-500 shadow-lg shadpw-neutra;-500  px-4 py-2 rounded-3xl shadow-sl shadow-black mb-48'
+                <button className='z-50 text-5xl border-2 bg-gradient-to-tr from-rose-600 to-rose-500 shadow-lg shadpw-neutra;-500  px-4 py-2 rounded-3xl shadow-sl shadow-black'
                     onClick={(e) => handleFoldingAnimations(e)}>
                     <Icon data={{ desc: 'play' }} />
                 </button>
