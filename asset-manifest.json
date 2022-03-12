@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/stargrip/static/css/main.14416be3.css",
-    "main.js": "/stargrip/static/js/main.afb6853f.js",
+    "main.css": "/stargrip/static/css/main.d66b8cf5.css",
+    "main.js": "/stargrip/static/js/main.10960270.js",
     "static/js/787.ca78f21f.chunk.js": "/stargrip/static/js/787.ca78f21f.chunk.js",
     "static/media/pretty.svg": "/stargrip/static/media/pretty.d67dfbf4b7323dd4b225b7bbb97f8e3b.svg",
     "static/media/diamond.svg": "/stargrip/static/media/diamond.099e8701e926ec73c6ab2223df175d98.svg",
@@ -16,12 +16,12 @@
     "static/media/friends.svg": "/stargrip/static/media/friends.5bcb65879ca1e6b0e97272affe7a0d41.svg",
     "static/media/close-right.svg": "/stargrip/static/media/close-right.0a76a8c044b600f942b67581e08f3b8e.svg",
     "static/media/play.svg": "/stargrip/static/media/play.9528a76730dd9a708cba15e7329b0ecb.svg",
-    "main.14416be3.css.map": "/stargrip/static/css/main.14416be3.css.map",
-    "main.afb6853f.js.map": "/stargrip/static/js/main.afb6853f.js.map",
+    "main.d66b8cf5.css.map": "/stargrip/static/css/main.d66b8cf5.css.map",
+    "main.10960270.js.map": "/stargrip/static/js/main.10960270.js.map",
     "787.ca78f21f.chunk.js.map": "/stargrip/static/js/787.ca78f21f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.14416be3.css",
-    "static/js/main.afb6853f.js"
+    "static/css/main.d66b8cf5.css",
+    "static/js/main.10960270.js"
   ]
 }
