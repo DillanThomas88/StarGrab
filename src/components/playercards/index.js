@@ -70,8 +70,8 @@ function PlayerCards({props}){
 
 
     return (<>
-    <div className='flex flex-between'>
-          <div className='w-full grid content-center justify-center mt-5'>
+    <div className='flex justify-center'>
+          <div className=' grid content-center justify-center mt-5'>
             <Player props={player.player1} GetInfo={GetInfo} />
             <Player props={player.player2} GetInfo={GetInfo} />
           </div>

@@ -51,7 +51,7 @@ function Tile({ index }) {
             row={index.row}
             col={index.col}
             star={isLucky <= 5 ? 'true' : 'false'}
-            className={`relative fold-target h-14 w-14 sm:h-28 sm:w-28 pointer-events-none text-white font-normal rounded-md grid  text-2xl sm:text-7xl`}>
+            className={`relative fold-target h-12 w-12 sm:h-28 sm:w-28 pointer-events-none text-white font-normal rounded-md grid  text-2xl sm:text-7xl`}>
             <div className='absolute h-full w-full'>
                 <div className={` ${colorObj.bg} overflow-hidden border-2 sm:border-4 border-neutral-200  h-full w-full rounded-sm sm:rounded-md `}>
                     {isLucky > 5

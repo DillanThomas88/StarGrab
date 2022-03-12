@@ -13,7 +13,7 @@ module.exports = {
         foldOut: 'fold .4s forwards',
         foldIn: 'fold .4s reverse',
         clockwise: 'rotate 21s infinite linear',
-        select: 'select .5s forwards',
+        select: 'select .2s forwards',
         deselect: 'select .5s reverse',
         collect: 'collect 1s infinite'
       },
@@ -32,8 +32,8 @@ module.exports = {
         },
         select: {
           '0%': { transform: 'scale(1)'},
-          '15%': { transform: 'scale(1.2)'},
-          '30%': { transform: 'scale(1)'},
+          '25%': { transform: 'scale(1.1)'},
+          '50%': { transform: 'scale(1)'},
           '100%': { transform: 'scale(1)'},
         },
         swivel: {
