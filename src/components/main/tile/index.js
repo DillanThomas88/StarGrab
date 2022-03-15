@@ -65,7 +65,7 @@ function Tile({ index }) {
                             <div className={`relative grid content-center justify-center text-center text-neutral-900 h-full`}>
                                 <Icon data={{desc: 'detail'}} />
                                 <Icon data={{desc: 'large'}} type={colorObj.text} />
-                                <div className='z-10 pt-1 lg:pt-0 text-lg md:text-3xl lg:text-xl'>{number}</div>
+                                <div className='z-10 pt-2 lg:pt-0 text-2xl md:text-3xl lg:text-xl'>{number}</div>
                             </div>
 
                         </>}

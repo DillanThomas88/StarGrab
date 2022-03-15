@@ -9,7 +9,7 @@ module.exports = {
         fadeIn: 'fade .525s reverse',
         fadeOut: 'fade .525s forwards',
         attention: 'attention 2.1s infinite ',
-        swivel: 'swivel 1.05s infinite',
+        swivel: 'swivel 1.05s infinite ',
         foldOut: 'fold .4s forwards',
         foldIn: 'fold .4s reverse',
         clockwise: 'rotate 21s infinite linear',
@@ -37,9 +37,9 @@ module.exports = {
           '100%': { transform: 'scale(1)'},
         },
         swivel: {
-          '0%': {transform: 'rotate(15deg)'},
-          '50%': {transform: 'rotate(-15deg)'},
-          '100%': {transform: 'rotate(15deg)'},
+          '0%': {transform: 'rotate(7deg) scale(1.1)'},
+          '50%': {transform: 'rotate(-7deg) scale(1.1)'},
+          '100%': {transform: 'rotate(7deg) scale(1.1)'},
         },
         fold: {
           '0%': {transform: 'scaleX(1)'},

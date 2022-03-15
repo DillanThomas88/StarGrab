@@ -21,11 +21,12 @@ function App() {
         <div className='grid text-center my-4 md:my-8 lg:my-4'>
           <div className='text-3xl md:text-5xl lg:text-2xl uppercase'>Star Grab</div>
           <div className='text-lg md:text-xl lg:text-lg'>Collect 10 stars to win !</div>
+          
 
         </div>
         <Main />
 
-        <PlayerCards />
+        {/* <PlayerCards /> */}
 
 
       </main>

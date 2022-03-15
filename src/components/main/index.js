@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Tile from './tile'
 import Icon from './tile/icons'
 import Player from '../playercards/player'
@@ -11,18 +11,18 @@ function Main() {
 
 
 
-
     const board = () => {
         let board = []
         for (let i = 0; i < gridSize; i++) {
             for (let j = 0; j < gridSize; j++) {
-                board.push(<Tile index={{ row: i, col: j }}/>)
+                board.push(<Tile index={{ row: i, col: j }} />)
             }
         }
         return board
     }
+    const [tiles, settiles] = useState(board())
 
-    
+
     const getColors = (type) => {
         switch (type) {
             case 1:
@@ -41,7 +41,7 @@ function Main() {
                 break;
             case 3:
                 return {
-                    bg: 'bg-indigo-500',
+                    bg: 'bg-indigo-400',
                     text: 'text-indigo-400',
                     border: 'border-indigo-400'
                 }
@@ -58,40 +58,109 @@ function Main() {
                 break;
         }
     }
-    let selectObj = {
-        color: undefined,
-        bg: undefined,
-        array: [],
-        total: 0,
+
+
+    const [state, setstate] = useState({
+        randomNum: Math.floor(Math.random() * 13) + 7,
+        total: 0
+    })
+    const HandleCounter = () => {
+        const selectedTiles = document.querySelectorAll('.selected')
+        let total = 0
+        selectedTiles.forEach(element => {
+            let parent = element.parentElement.parentElement
+            total += parseInt(parent.getAttribute('datanum'))
+        });
+        let color = {
+            text: 'text-neutral-500',
+            bg: 'bg-neutral-700 '
+        }
+        if (total == state.randomNum) {
+            color = {
+                color: 'text-red-500',
+                bg: 'bg-neutral-100'
+            }
+        }
+        return (
+            <div className={` ${color.text}  flex justify-between items-center text-2xl md:text-4xl lg:text-2xl`}>
+                <div className='flex justify-start items-center'>
+                    <div className='w-14 lg:w-10 text-center'>{state.randomNum}</div>
+                    {total !== state.randomNum
+                        ? <Icon data={{ desc: 'notequal' }} />
+                        : <Icon data={{ desc: 'equal' }} type={color} />
+                    }
+                    <div className='w-14 lg:w-10 text-center'>{!selectedTiles.length ? state.total : total}</div>
+                </div>
+                <button disabled={total !== state.randomNum ? true : false} className={`${color.bg} w-40 lg:w-28 rounded-md px-4 py-2 uppercase text-neutral-900 `}>
+                    {total !== state.randomNum
+                        ? 'grab'
+                        : 'Grab'
+                    }
+                </button>
+            </div>
+        )
     }
+
     const handleSelected = (e) => {
+
         const tile = e.target
         const childData = e.target.children[0]
         const border = tile.children[0].children[0].children[0]
+        // console.log(border);
+        const selectedTiles = document.querySelectorAll('.selected')
+        const tilePackage = []
+        selectedTiles.forEach(element => {
+            let parent = element.parentElement.parentElement
+            tilePackage.push({
+                number: parseInt(parent.getAttribute('datanum')),
+                color: parseInt(parent.getAttribute('datacolor')),
+                row: parseInt(parent.getAttribute('row')),
+                col: parseInt(parent.getAttribute('col')),
+                star: parent.getAttribute('star'),
+            })
+        });
+        let selectObj = {
+            color: undefined,
+            array: tilePackage,
+            total: 0,
+        }
+        if (tilePackage.length) {
+            selectObj.total = 0
+            tilePackage.forEach(element => {
+                // console.log(element);
+                selectObj.total += element.number
+            });
+
+        }
 
 
-        
-        
         if (tile.classList.contains('tile')) {
             let obj = {
-                row: childData.getAttribute('row'),
-                col: childData.getAttribute('col'),
                 number: parseInt(childData.getAttribute('datanum')),
-                star: 0
+                color: parseInt(childData.getAttribute('datacolor')),
+                row: parseInt(childData.getAttribute('row')),
+                col: parseInt(childData.getAttribute('col')),
+                star: childData.getAttribute('star'),
             }
+
+            if (!selectObj.array.length) {
+                selectObj.color = obj.color
+            } else { selectObj.color = selectObj.array[0].color }
+
+            // ! color check
+            if (selectObj.color != obj.color) return
+
+            // console.log(selectObj.total, obj.number);
+            selectObj.total += obj.number
+            // console.log(selectObj.total, obj.number);
+
             let colors = getColors(parseInt(childData.getAttribute('datacolor')))
-            if (childData.getAttribute('star') === 'true') obj.star = obj.number
 
 
             if (!border.classList.contains('selected')) {
 
                 if (!selectObj.color) {
                     selectObj.color = childData.getAttribute('datacolor')
-                }
-                // ! return
-                if (selectObj.color !== childData.getAttribute('datacolor')) return
-                else {
-                    selectObj.array.push(obj)
                 }
 
                 // ! apply style
@@ -105,8 +174,8 @@ function Main() {
                     clearInterval(t)
                     border.classList.toggle('animate-select')
                 }, 200);
-                
-                if(childData.getAttribute('star') == 'true'){
+
+                if (childData.getAttribute('star') == 'true') {
                     x.classList.toggle('text-neutral-900')
                     x.classList.toggle(colors.text)
                     x.children[0].classList.toggle('text-neutral-700')
@@ -120,18 +189,19 @@ function Main() {
 
             } else if (border.classList.contains('selected')) {
 
-                
+
                 const o = selectObj.array.filter(data => {
-                    console.log(data.row + obj.row, data.col + obj.col);
+                    // console.log(data.row + obj.row, data.col + obj.col);
                     return data.row + data.col != obj.row + obj.col
                 })
                 selectObj.array = o
-                console.log(selectObj);
+                if (!selectObj.array.length) { selectObj.total = 0 }
+                // console.log(selectObj);
 
 
                 // ! apply style
                 let x = childData.children[0].children[0].children[0]
-                
+
                 border.classList.toggle(colors.border)
                 border.classList.toggle('border-neutral-600')
                 border.classList.toggle(colors.bg)
@@ -141,8 +211,8 @@ function Main() {
                     clearInterval(t)
                     border.classList.toggle('animate-select')
                 }, 200);
-                
-                if(childData.getAttribute('star') == 'true'){
+
+                if (childData.getAttribute('star') == 'true') {
                     x.classList.toggle(colors.text)
                     x.classList.toggle('text-neutral-900')
                     x.children[0].classList.toggle('text-neutral-900')
@@ -155,29 +225,22 @@ function Main() {
                 }
             }
 
-            console.log(selectObj.array);
-            if (selectObj.array.length  === 0) selectObj.color = undefined
-            console.log(selectObj.array);
+            // console.log(selectObj.array);
+            if (selectObj.array.length === 0) selectObj.color = undefined
+            // console.log(selectObj.array);
 
             // ! calculate scoreing obj
-            selectObj.total = 0
+
             selectObj.array.forEach(element => {
                 selectObj.total += element.number
             });
+            setstate(data => ({
+                randomNum: data.randomNum,
+                total: selectObj.total
+            }))
 
-            const players = document.querySelectorAll('.player-btn')
-            const buttons = document.querySelectorAll('.collect-btn')
-            if (parseInt(players[0].innerHTML) === selectObj.total) {
-                buttons[0].classList.toggle('animate-collect')
-
-            } else {
-                if (buttons[0].classList.contains('animate-collect')) {
-                    buttons[0].classList.toggle('animate-collect')
-                }
-            }
-
-            // console.log(selectObj);
         }
+
 
     }
 
@@ -198,7 +261,6 @@ function Main() {
             } return array
         }
         let rows = getRows()
-        console.log(rows);
         const styles = {
             top: 'absolute h-full w-full animate-foldOut',
             bottom: 'absolute h-full w-full animate-foldIn',
@@ -234,26 +296,37 @@ function Main() {
 
     return (
         <div
-            className="grid  content-center justify-center w-screen">
-            <div onClick={(e) => handleSelected(e)} className={`grid ${rows, cols} gap-1 md:gap-2 lg:gap-1`}>
-                {board().map((data, index) => {
+            className="grid relative  content-center justify-center w-screen">
+            <div className='z-30 grid absolute  content-center justify-center w-full  h-full pb-20'>
+                {/* <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
+                </div> */}
+
+                <button className='z-50 text-xl  uppercase bg-gradient-to-tr from-neutral-100 to-white rounded-3xl shadow-lg shadow-black flex justify-center items-center text-neutral-900 px-4 py-2'
+                    onClick={(e) => handleFoldingAnimations(e)}>
+                    <div className='mr-2'>start</div>
+                    <Icon data={{ desc: 'play' }} type={'text-neutral-800'} />
+                </button>
+
+            </div>
+
+            <div onClick={(e) => handleSelected(e)} className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+                {tiles.map((data, index) => {
                     return (
                         <div className='tile' key={index} >
                             {data}
                         </div>
                     )
                 })}
-            </div>
-            <div className='z-30 fixed grid content-center justify-center w-full  h-full top-0'>
-                {/* <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
-                </div> */}
-
-                <button className='z-50 text-5xl bg-gradient-to-tr from-neutral-100 to-white rounded-3xl shadow-lg shadow-black'
-                    onClick={(e) => handleFoldingAnimations(e)}>
-                    <Icon data={{ desc: 'play' }} type={'text-neutral-800'} />
-                </button>
 
             </div>
+
+            <div className='rounded-lg py-2 mt-5 font-semibold'>
+                <div>
+                    {HandleCounter()}
+                </div>
+            </div>
+
+
         </div>
     )
 }
