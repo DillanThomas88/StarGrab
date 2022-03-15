@@ -5,7 +5,9 @@ import Player from '../playercards/player'
 
 function Main() {
 
-    const gridSize = 6
+    const gridSize = 5
+    const rows = 'grid-rows-5'
+    const cols = 'grid-cols-5'
 
 
 
@@ -233,7 +235,7 @@ function Main() {
     return (
         <div
             className="grid  content-center justify-center w-screen">
-            <div onClick={(e) => handleSelected(e)} className=" grid grid-rows-6 grid-cols-6 gap-1 md:gap-2 lg:gap-1">
+            <div onClick={(e) => handleSelected(e)} className={`grid ${rows, cols} gap-1 md:gap-2 lg:gap-1`}>
                 {board().map((data, index) => {
                     return (
                         <div className='tile' key={index} >
