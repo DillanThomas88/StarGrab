@@ -18,22 +18,22 @@ function Tile({ index }) {
             case 2:
                 return {
                     bg: 'bg-gradient-to-tr from-amber-500 to-amber-400',
-                    text: 'text-amber-500',
-                    border: 'border-amber-500'
+                    text: 'text-yellow-300',
+                    border: 'border-yellow-300'
                 }
                 break;
             case 3:
                 return {
                     bg: 'bg-gradient-to-tr from-indigo-500 to-indigo-400',
-                    text: 'text-indigo-500',
-                    border: 'border-indigo-500'
+                    text: 'text-indigo-400',
+                    border: 'border-indigo-400'
                 }
                 break;
             case 4:
                 return {
                     bg: 'bg-gradient-to-tr from-rose-500 to-rose-400',
-                    text: 'text-rose-500',
-                    border: 'border-rose-500'
+                    text: 'text-red-500',
+                    border: 'border-red-500'
                 }
                 break;
 
@@ -52,7 +52,7 @@ function Tile({ index }) {
             row={index.row}
             col={index.col}
             star={isLucky <= 5 ? 'true' : 'false'}
-            className={`relative fold-target h-12 w-12 md:h-24 md:w-24 lg:h-12 lg:w-12 pointer-events-none ${colorObj.text} font-normal rounded-md grid  text-2xl md:text-5xl lg:text-3xl`}>
+            className={`relative fold-target h-14 w-14 md:h-24 md:w-24 lg:h-12 lg:w-12 pointer-events-none ${colorObj.text} font-bold rounded-md grid  text-3xl md:text-5xl lg:text-3xl`}>
             <div className='absolute h-full w-full'>
                 <div className={` overflow-hidden border-2 md:border-4 lg:border-2 border-neutral-600  h-full w-full rounded-sm md:rounded-md lg:rounded-sm`}>
                     {isLucky > 5
@@ -62,7 +62,7 @@ function Tile({ index }) {
                             </div>
                         </>
                         : <>
-                            <div className={`relative grid content-center justify-center text-center text-white h-full`}>
+                            <div className={`relative grid content-center justify-center text-center text-neutral-900 h-full`}>
                                 <Icon data={{desc: 'detail'}} />
                                 <Icon data={{desc: 'large'}} type={colorObj.text} />
                                 <div className='z-10 pt-1 lg:pt-0 text-lg md:text-3xl lg:text-xl'>{number}</div>
@@ -72,8 +72,8 @@ function Tile({ index }) {
                 </div>
             </div>
             <div className='z-10 absolute w-full h-full pointer-events-none'>
-                <div className={`${colorObj.text} bg-neutral-700 overflow-hidden grid h-full w-full justify-center content-center border-4 border-neutral-700 rounded-sm md:rounded-md lg:rounded-sm `}>
-                    <Icon index={number} type={colorObj} data={{ desc: 'background' }} />
+                <div className={`${colorObj.text} bg-neutral-900 overflow-hidden grid h-full w-full justify-center content-center border-2 border-neutral-700 rounded-sm md:rounded-md lg:rounded-sm `}>
+                    <Icon index={number} type={'text-neutral-800'} data={{ desc: 'background' }} />
                 </div>
 
             </div>

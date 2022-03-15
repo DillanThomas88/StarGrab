@@ -32,23 +32,23 @@ function Main() {
                 break;
             case 2:
                 return {
-                    bg: 'bg-amber-500',
-                    text: 'text-amber-500',
-                    border: 'border-amber-500'
+                    bg: 'bg-yellow-300',
+                    text: 'text-yellow-300',
+                    border: 'border-yellow-300'
                 }
                 break;
             case 3:
                 return {
                     bg: 'bg-indigo-500',
-                    text: 'text-indigo-500',
-                    border: 'border-indigo-500'
+                    text: 'text-indigo-400',
+                    border: 'border-indigo-400'
                 }
                 break;
             case 4:
                 return {
-                    bg: 'bg-rose-500',
-                    text: 'text-rose-500',
-                    border: 'border-rose-500'
+                    bg: 'bg-red-500',
+                    text: 'text-red-500',
+                    border: 'border-red-500'
                 }
                 break;
 
@@ -93,21 +93,26 @@ function Main() {
                 }
 
                 // ! apply style
+                let x = childData.children[0].children[0].children[0]
                 border.classList.toggle('border-neutral-600')
                 border.classList.toggle(colors.border)
                 border.classList.toggle(colors.bg)
                 border.classList.toggle('selected')
                 border.classList.toggle('animate-select')
-
+                let t = setInterval(() => {
+                    clearInterval(t)
+                    border.classList.toggle('animate-select')
+                }, 200);
+                
                 if(childData.getAttribute('star') == 'true'){
-                    let x = childData.children[0].children[0].children[0]
-                    x.children[0].classList.toggle('text-neutral-700')
-                    x.children[0].classList.toggle('text-white')
-                    x.children[1].classList.toggle(colors.text)
-                    x.children[1].classList.toggle('text-white')
-                    x.classList.toggle('text-white')
+                    x.classList.toggle('text-neutral-900')
                     x.classList.toggle(colors.text)
+                    x.children[0].classList.toggle('text-neutral-700')
+                    x.children[0].classList.toggle('text-neutral-900')
+                    x.children[1].classList.toggle(colors.text)
+                    x.children[1].classList.toggle('text-neutral-900')
                 } else {
+                    x.classList.toggle('text-neutral-900')
                     border.classList.toggle('text-white')
                 }
 
@@ -123,22 +128,28 @@ function Main() {
 
 
                 // ! apply style
-                border.classList.toggle('selected')
-                border.classList.toggle('animate-select')
-                border.classList.toggle(colors.bg)
+                let x = childData.children[0].children[0].children[0]
+                
                 border.classList.toggle(colors.border)
                 border.classList.toggle('border-neutral-600')
-
+                border.classList.toggle(colors.bg)
+                border.classList.toggle('selected')
+                border.classList.toggle('animate-select')
+                let t = setInterval(() => {
+                    clearInterval(t)
+                    border.classList.toggle('animate-select')
+                }, 200);
+                
                 if(childData.getAttribute('star') == 'true'){
-                    let x = childData.children[0].children[0].children[0]
                     x.classList.toggle(colors.text)
-                    x.classList.toggle('text-white')
-                    x.children[0].classList.toggle('text-white')
+                    x.classList.toggle('text-neutral-900')
+                    x.children[0].classList.toggle('text-neutral-900')
                     x.children[0].classList.toggle('text-neutral-700')
+                    x.children[1].classList.toggle('text-neutral-900')
                     x.children[1].classList.toggle(colors.text)
-                    x.children[1].classList.toggle('text-white')
                 } else {
                     border.classList.toggle('text-white')
+                    x.classList.toggle('text-neutral-900')
                 }
             }
 

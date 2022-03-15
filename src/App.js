@@ -13,7 +13,7 @@ function App() {
 
 
   return (
-    <div style={{ height: window.innerHeight }} className="font-default bg-neutral-800  select-none  text-white overflow-y-scroll lg:overflow-y-hidden">
+    <div style={{ height: window.innerHeight }} className="font-default bg-neutral-900  select-none  text-neutral-100 overflow-y-scroll lg:overflow-y-hidden">
       <header className="App-header fixed top-0 w-full z-50">
         {/* <Header /> */}
       </header>

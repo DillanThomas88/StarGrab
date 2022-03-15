@@ -22,7 +22,7 @@ function Icon({type, data }) {
             classes = `absolute ${type} h-full w-full animate-swivel md:pb-1`
             break;
         case 'background':
-            classes = `text-neutral-800 w-full h-full`
+            classes = `${type} w-full h-full`
             break;
         case 'play':
             classes = `${type} h-28 w-28 pointer-events-none`
