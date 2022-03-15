@@ -301,7 +301,7 @@ function Main() {
                 {/* <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
                 </div> */}
 
-                <button className='z-50 text-xl  uppercase bg-gradient-to-tr from-neutral-100 to-white rounded-3xl shadow-lg flex shadow-black  text-neutral-900 px-4 py-2'
+                <button className='z-50 text-xl  uppercase bg-gradient-to-tr from-neutral-100 to-white rounded-3xl shadow-lg flex items-center shadow-black  text-neutral-900 px-4 py-2 h-12'
                     onClick={(e) => handleFoldingAnimations(e)}>
                     <div className='mr-2'>start</div>
                     <Icon data={{ desc: 'play' }} type={'text-neutral-800'} />
