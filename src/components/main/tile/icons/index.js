@@ -7,29 +7,31 @@ import { ReactComponent as BackSimpleSVG } from './backside/simple.svg'
 import { ReactComponent as PlaySVG } from './play.svg'
 import { ReactComponent as DetailSVG } from './rays.svg'
 
-function Icon({ index, type, data }) {
+function Icon({type, data }) {
+
+    console.log(type);
 
 
     let classes = ``
 
     switch (data.desc) {
         case 'small':
-            classes = `h-5 w-5 text-white m-2 `
+            classes = `h-5 w-5 ${type} m-2 `
             break;
         case 'large':
-            classes = `absolute text-white h-full w-full animate-swivel md:pb-1`
+            classes = `absolute ${type} h-full w-full animate-swivel md:pb-1`
             break;
         case 'background':
-            classes = `text-neutral-700 w-full h-full`
+            classes = `text-neutral-800 w-full h-full`
             break;
         case 'play':
-            classes = `text-white h-28 w-28 pointer-events-none`
+            classes = `${type} h-28 w-28 pointer-events-none`
             break;
         case 'detail':
-            classes = `absolute h-full w-full animate-clockwise opacity-10 text-white grid content-center justify-center pointer-events-none`
+            classes = `absolute h-full w-full animate-clockwise opacity-10 text-neutral-700 grid content-center justify-center pointer-events-none`
             break;
         case 'score':
-            classes = `h-10 w-10 md:h-16 md:w-16 lg:w-10 lg:h-10 text-white`
+            classes = `h-10 w-10 md:h-16 md:w-16 lg:w-10 lg:h-10 ${type}`
             break;
 
         default:

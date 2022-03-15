@@ -20,68 +20,131 @@ function Main() {
         return board
     }
 
+    
+    const getColors = (type) => {
+        switch (type) {
+            case 1:
+                return {
+                    bg: 'bg-green-500',
+                    text: 'text-green-500',
+                    border: 'border-green-500'
+                }
+                break;
+            case 2:
+                return {
+                    bg: 'bg-amber-500',
+                    text: 'text-amber-500',
+                    border: 'border-amber-500'
+                }
+                break;
+            case 3:
+                return {
+                    bg: 'bg-indigo-500',
+                    text: 'text-indigo-500',
+                    border: 'border-indigo-500'
+                }
+                break;
+            case 4:
+                return {
+                    bg: 'bg-rose-500',
+                    text: 'text-rose-500',
+                    border: 'border-rose-500'
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
     let selectObj = {
         color: undefined,
+        bg: undefined,
         array: [],
         total: 0,
     }
     const handleSelected = (e) => {
         const tile = e.target
-        const chilData = e.target.children[0]
+        const childData = e.target.children[0]
         const border = tile.children[0].children[0].children[0]
 
 
+        
+        
         if (tile.classList.contains('tile')) {
             let obj = {
-                row: chilData.getAttribute('row'),
-                col: chilData.getAttribute('col'),
-                number: parseInt(chilData.getAttribute('datanum')),
+                row: childData.getAttribute('row'),
+                col: childData.getAttribute('col'),
+                number: parseInt(childData.getAttribute('datanum')),
                 star: 0
             }
-            if (chilData.getAttribute('star') === 'true') obj.star = obj.number
+            let colors = getColors(parseInt(childData.getAttribute('datacolor')))
+            if (childData.getAttribute('star') === 'true') obj.star = obj.number
 
-            let styleArray = []
-            if (window.innerWidth > 400) {
-                styleArray = ['md:rounded-md', 'md:rounded-full']
-            } else {
-                styleArray = ['rounded-sm', 'rounded-full']
-            }
-            if (border.classList.contains(styleArray[0])) {
+
+            if (!border.classList.contains('selected')) {
 
                 if (!selectObj.color) {
-                    selectObj.color = chilData.getAttribute('datacolor')
+                    selectObj.color = childData.getAttribute('datacolor')
                 }
                 // ! return
-                if (selectObj.color !== chilData.getAttribute('datacolor')) return
+                if (selectObj.color !== childData.getAttribute('datacolor')) return
                 else {
                     selectObj.array.push(obj)
                 }
 
                 // ! apply style
-                console.log(window.innerWidth);
-                border.classList.toggle(styleArray[0])
-                border.classList.toggle(styleArray[1])
-                border.classList.toggle('animate-select')
+                border.classList.toggle('border-neutral-600')
+                border.classList.toggle(colors.border)
+                border.classList.toggle(colors.bg)
                 border.classList.toggle('selected')
+                border.classList.toggle('animate-select')
 
-            } else if (border.classList.contains(styleArray[1])) {
+                if(childData.getAttribute('star') == 'true'){
+                    let x = childData.children[0].children[0].children[0]
+                    x.children[0].classList.toggle('text-neutral-700')
+                    x.children[0].classList.toggle('text-white')
+                    x.children[1].classList.toggle(colors.text)
+                    x.children[1].classList.toggle('text-white')
+                    x.classList.toggle('text-white')
+                    x.classList.toggle(colors.text)
+                } else {
+                    border.classList.toggle('text-white')
+                }
 
-                console.log(selectObj.array);
+            } else if (border.classList.contains('selected')) {
+
+                
                 const o = selectObj.array.filter(data => {
+                    console.log(data.row + obj.row, data.col + obj.col);
                     return data.row + data.col != obj.row + obj.col
                 })
                 selectObj.array = o
-                console.log(selectObj.array);
+                console.log(selectObj);
+
 
                 // ! apply style
-                border.classList.toggle(styleArray[1])
-                border.classList.toggle(styleArray[0])
-                border.classList.toggle('animate-select')
                 border.classList.toggle('selected')
+                border.classList.toggle('animate-select')
+                border.classList.toggle(colors.bg)
+                border.classList.toggle(colors.border)
+                border.classList.toggle('border-neutral-600')
+
+                if(childData.getAttribute('star') == 'true'){
+                    let x = childData.children[0].children[0].children[0]
+                    x.classList.toggle(colors.text)
+                    x.classList.toggle('text-white')
+                    x.children[0].classList.toggle('text-white')
+                    x.children[0].classList.toggle('text-neutral-700')
+                    x.children[1].classList.toggle(colors.text)
+                    x.children[1].classList.toggle('text-white')
+                } else {
+                    border.classList.toggle('text-white')
+                }
             }
 
-
-            if (selectObj.array.length === 0) selectObj.color = undefined
+            console.log(selectObj.array);
+            if (selectObj.array.length  === 0) selectObj.color = undefined
+            console.log(selectObj.array);
 
             // ! calculate scoreing obj
             selectObj.total = 0
@@ -169,12 +232,12 @@ function Main() {
                 })}
             </div>
             <div className='z-30 fixed grid content-center justify-center w-full  h-full top-0'>
-                <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
-                </div>
+                {/* <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
+                </div> */}
 
-                <button className='z-50 text-5xl border-2 bg-gradient-to-tr from-rose-600 to-rose-500 rounded-3xl shadow-lg shadow-black'
+                <button className='z-50 text-5xl bg-gradient-to-tr from-neutral-100 to-white rounded-3xl shadow-lg shadow-black'
                     onClick={(e) => handleFoldingAnimations(e)}>
-                    <Icon data={{ desc: 'play' }} />
+                    <Icon data={{ desc: 'play' }} type={'text-neutral-800'} />
                 </button>
 
             </div>

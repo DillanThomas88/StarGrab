@@ -11,8 +11,8 @@ function Tile({ index }) {
             case 1:
                 return {
                     bg: 'bg-gradient-to-tr from-neutral-700 to-neutral-600',
-                    text: 'text-neutral-700',
-                    border: 'border-neutral-700'
+                    text: 'text-green-500',
+                    border: 'border-green-500'
                 }
                 break;
             case 2:
@@ -43,6 +43,7 @@ function Tile({ index }) {
     }
 
     let colorObj = getColors(type)
+    console.log();
 
     return (
         <div
@@ -51,27 +52,27 @@ function Tile({ index }) {
             row={index.row}
             col={index.col}
             star={isLucky <= 5 ? 'true' : 'false'}
-            className={`relative fold-target h-12 w-12 md:h-24 md:w-24 lg:h-12 lg:w-12 pointer-events-none text-white font-normal rounded-md grid  text-2xl md:text-5xl lg:text-3xl`}>
+            className={`relative fold-target h-12 w-12 md:h-24 md:w-24 lg:h-12 lg:w-12 pointer-events-none ${colorObj.text} font-normal rounded-md grid  text-2xl md:text-5xl lg:text-3xl`}>
             <div className='absolute h-full w-full'>
-                <div className={` ${colorObj.bg} overflow-hidden border-2 md:border-4 lg:border-2 border-neutral-200  h-full w-full rounded-sm md:rounded-md lg:rounded-sm `}>
+                <div className={` overflow-hidden border-2 md:border-4 lg:border-2 border-neutral-600  h-full w-full rounded-sm md:rounded-md lg:rounded-sm`}>
                     {isLucky > 5
                         ? <>
-                            <div className="relative grid content-center justify-center text-center h-full">
+                            <div className={`relative grid content-center justify-center text-center h-full`}>
                                 {number}
                             </div>
                         </>
                         : <>
-                            <div className={`relative grid content-center justify-center text-center ${colorObj.text} h-full`}>
-                                <Icon data={{desc: 'large'}} />
+                            <div className={`relative grid content-center justify-center text-center text-white h-full`}>
                                 <Icon data={{desc: 'detail'}} />
-                                <div className='z-10 pt-1 lg:pt-0 text-xl md:text-4xl lg:text-xl font-bold'>{number}</div>
+                                <Icon data={{desc: 'large'}} type={colorObj.text} />
+                                <div className='z-10 pt-1 lg:pt-0 text-lg md:text-3xl lg:text-xl'>{number}</div>
                             </div>
 
                         </>}
                 </div>
             </div>
             <div className='z-10 absolute w-full h-full pointer-events-none'>
-                <div className={` bg-gradient-to-tr from-neutral-300 to-neutral-200 overflow-hidden grid h-full w-full justify-center content-center border-2 border-white rounded-md `}>
+                <div className={`${colorObj.text} bg-neutral-700 overflow-hidden grid h-full w-full justify-center content-center border-4 border-neutral-700 rounded-sm md:rounded-md lg:rounded-sm `}>
                     <Icon index={number} type={colorObj} data={{ desc: 'background' }} />
                 </div>
 
