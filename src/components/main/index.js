@@ -21,7 +21,10 @@ function Main() {
         return board
     }
     const [tiles, settiles] = useState(board())
-
+    const [state, setstate] = useState({
+        randomNum: Math.floor(Math.random() * 15) + 10,
+        total: 0
+    })
 
     const getColors = (type) => {
         switch (type) {
@@ -59,18 +62,39 @@ function Main() {
         }
     }
 
+    const handleNewCards = () => {
+        let queryTiles = Array.from(document.querySelectorAll('.tile'))
+        let selected = document.querySelectorAll('.selected')
+        let alltiles = queryTiles.map(data => data.children[0])
+        let board = []
+        alltiles.forEach((element, index) => {
+            let row = parseInt(element.getAttribute('row'))
+            let col = parseInt(element.getAttribute('col'))
+            let color = getColors(parseInt(element.getAttribute('datacolor')))
+            if (element.children[0].children[0].classList.contains('selected')) {
+                applyremoveStyle(element.parentElement, 'remove')
+                board.push(<Tile index={{ row: row, col: col }} />)
+            }
+            else { board.push(tiles[index]) }
 
-    const [state, setstate] = useState({
-        randomNum: Math.floor(Math.random() * 13) + 7,
-        total: 0
-    })
-    const HandleCounter = () => {
-        const selectedTiles = document.querySelectorAll('.selected')
+        });
+        settiles(board)
+        HandleCounter('reset')
+
+    }
+
+
+    const HandleCounter = (x) => {
         let total = 0
+        const selectedTiles = document.querySelectorAll('.selected')
         selectedTiles.forEach(element => {
             let parent = element.parentElement.parentElement
             total += parseInt(parent.getAttribute('datanum'))
         });
+        if(x === 'reset'){ setstate({
+            randomNum: Math.floor(Math.random() * 15) + 10,
+            total: 0
+        })}
         let color = {
             text: 'text-neutral-500',
             bg: 'bg-neutral-700 '
@@ -89,9 +113,10 @@ function Main() {
                         ? <Icon data={{ desc: 'notequal' }} />
                         : <Icon data={{ desc: 'equal' }} type={color} />
                     }
-                    <div className='w-14 lg:w-10 text-center'>{!selectedTiles.length ? state.total : total}</div>
+                    <div className='w-14 lg:w-10 text-center'>{total === 0 ? 0 : total}</div>
                 </div>
-                <button disabled={total !== state.randomNum ? true : false} className={`${color.bg} w-40 lg:w-28 rounded-md px-4 py-2 uppercase text-neutral-900 `}>
+                <button onClick={handleNewCards}
+                    disabled={total !== state.randomNum ? true : false} className={`${color.bg} w-40 lg:w-28 rounded-md px-4 py-2 uppercase text-neutral-900 `}>
                     {total !== state.randomNum
                         ? 'grab'
                         : 'Grab'
@@ -104,8 +129,8 @@ function Main() {
     const handleSelected = (e) => {
 
         const tile = e.target
-        const childData = e.target.children[0]
-        const border = tile.children[0].children[0].children[0]
+        const childData = tile.children[0]
+        const border = childData.children[0].children[0]
         // console.log(border);
         const selectedTiles = document.querySelectorAll('.selected')
         const tilePackage = []
@@ -154,7 +179,6 @@ function Main() {
             selectObj.total += obj.number
             // console.log(selectObj.total, obj.number);
 
-            let colors = getColors(parseInt(childData.getAttribute('datacolor')))
 
 
             if (!border.classList.contains('selected')) {
@@ -164,28 +188,7 @@ function Main() {
                 }
 
                 // ! apply style
-                let x = childData.children[0].children[0].children[0]
-                border.classList.toggle('border-neutral-600')
-                border.classList.toggle(colors.border)
-                border.classList.toggle(colors.bg)
-                border.classList.toggle('selected')
-                border.classList.toggle('animate-select')
-                let t = setInterval(() => {
-                    clearInterval(t)
-                    border.classList.toggle('animate-select')
-                }, 200);
-
-                if (childData.getAttribute('star') == 'true') {
-                    x.classList.toggle('text-neutral-900')
-                    x.classList.toggle(colors.text)
-                    x.children[0].classList.toggle('text-neutral-700')
-                    x.children[0].classList.toggle('text-neutral-900')
-                    x.children[1].classList.toggle(colors.text)
-                    x.children[1].classList.toggle('text-neutral-900')
-                } else {
-                    x.classList.toggle('text-neutral-900')
-                    border.classList.toggle('text-white')
-                }
+                applyremoveStyle(tile, 'apply')
 
             } else if (border.classList.contains('selected')) {
 
@@ -200,29 +203,8 @@ function Main() {
 
 
                 // ! apply style
-                let x = childData.children[0].children[0].children[0]
+                applyremoveStyle(tile, 'remove')
 
-                border.classList.toggle(colors.border)
-                border.classList.toggle('border-neutral-600')
-                border.classList.toggle(colors.bg)
-                border.classList.toggle('selected')
-                border.classList.toggle('animate-select')
-                let t = setInterval(() => {
-                    clearInterval(t)
-                    border.classList.toggle('animate-select')
-                }, 200);
-
-                if (childData.getAttribute('star') == 'true') {
-                    x.classList.toggle(colors.text)
-                    x.classList.toggle('text-neutral-900')
-                    x.children[0].classList.toggle('text-neutral-900')
-                    x.children[0].classList.toggle('text-neutral-700')
-                    x.children[1].classList.toggle('text-neutral-900')
-                    x.children[1].classList.toggle(colors.text)
-                } else {
-                    border.classList.toggle('text-white')
-                    x.classList.toggle('text-neutral-900')
-                }
             }
 
             // console.log(selectObj.array);
@@ -245,8 +227,8 @@ function Main() {
     }
 
     const handleFoldingAnimations = (e) => {
-        e.target.parentElement.classList.toggle('animate-fadeOut')
-        e.target.parentElement.classList.toggle('pointer-events-none')
+        e.target.classList.toggle('animate-fadeOut')
+        e.target.classList.toggle('pointer-events-none')
 
         const cards = document.querySelectorAll('.fold-target')
         const getRows = () => {
@@ -297,17 +279,11 @@ function Main() {
     return (
         <div
             className="grid relative  content-center justify-center w-screen">
-            <div className='z-30 absolute grid content-center justify-center w-full h-full pb-20'>
-                {/* <div className='z-30 fixed top-0 w-full h-full bg-black opacity-50'>
-                </div> */}
-
-                <button className='z-50 text-xl  uppercase bg-gradient-to-tr from-neutral-100 to-white rounded-3xl shadow-lg flex items-center shadow-black  text-neutral-900 px-4 py-2 h-12 w-36'
-                    onClick={(e) => handleFoldingAnimations(e)}>
-                    <div className='mr-2'>start</div>
-                    <Icon data={{ desc: 'play' }} type={'text-neutral-800'} />
-                </button>
-
-            </div>
+            <button className='z-50 text-xl absolute uppercase grid content-center justify-center w-full h-full pb-20'
+                onClick={(e) => handleFoldingAnimations(e)}>
+                <div className='mr-2'></div>
+                {/* <Icon data={{ desc: 'play' }} type={'text-white'} /> */}
+            </button>
 
             <div onClick={(e) => handleSelected(e)} className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
                 {tiles.map((data, index) => {
@@ -320,6 +296,7 @@ function Main() {
 
             </div>
 
+
             <div className='rounded-lg py-2 mt-5 font-semibold'>
                 <div>
                     {HandleCounter()}
@@ -329,6 +306,65 @@ function Main() {
 
         </div>
     )
+
+    function applyremoveStyle(tile, z) {
+        console.log(tile);
+        let childData = tile.children[0]
+        let x = childData.children[0].children[0].children[0]
+        // console.log(childData);
+        let border = childData.children[0].children[0]
+        let colors = getColors(parseInt(childData.getAttribute('datacolor')))
+
+        if (z === 'apply') {
+
+            border.classList.toggle('border-neutral-600')
+            border.classList.toggle(colors.border)
+            border.classList.toggle(colors.bg)
+            border.classList.toggle('selected')
+            border.classList.toggle('animate-select')
+            let t = setInterval(() => {
+                clearInterval(t)
+                border.classList.toggle('animate-select')
+            }, 200)
+
+            if (childData.getAttribute('star') == 'true') {
+                x.classList.toggle('text-neutral-900')
+                x.classList.toggle(colors.text)
+                x.children[0].classList.toggle('text-neutral-700')
+                x.children[0].classList.toggle('text-neutral-900')
+                x.children[1].classList.toggle(colors.text)
+                x.children[1].classList.toggle('text-neutral-900')
+            } else {
+                x.classList.toggle('text-neutral-900')
+                border.classList.toggle('text-white')
+            }
+        } else if (z === 'remove') {
+
+
+
+            border.classList.toggle(colors.border)
+            border.classList.toggle('border-neutral-600')
+            border.classList.toggle(colors.bg)
+            border.classList.toggle('selected')
+            border.classList.toggle('animate-select')
+            let t = setInterval(() => {
+                clearInterval(t)
+                border.classList.toggle('animate-select')
+            }, 200);
+
+            if (childData.getAttribute('star') == 'true') {
+                x.classList.toggle(colors.text)
+                x.classList.toggle('text-neutral-900')
+                x.children[0].classList.toggle('text-neutral-900')
+                x.children[0].classList.toggle('text-neutral-700')
+                x.children[1].classList.toggle('text-neutral-900')
+                x.children[1].classList.toggle(colors.text)
+            } else {
+                border.classList.toggle('text-white')
+                x.classList.toggle('text-neutral-900')
+            }
+        }
+    }
 }
 
 export default Main
