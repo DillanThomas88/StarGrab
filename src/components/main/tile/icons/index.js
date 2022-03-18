@@ -5,6 +5,7 @@ import { ReactComponent as BackIcosSVG } from './backside/icos.svg'
 import { ReactComponent as BackPrettySVG } from './backside/pretty.svg'
 import { ReactComponent as BackSimpleSVG } from './backside/simple.svg'
 import { ReactComponent as PlaySVG } from './play.svg'
+import { ReactComponent as PauseSVG } from './pause.svg'
 import { ReactComponent as DetailSVG } from './rays.svg'
 import { ReactComponent as NotEqualSVG } from './notequal.svg'
 import { ReactComponent as EqualSVG } from './equal.svg'
@@ -17,7 +18,7 @@ function Icon({ type, data }) {
 
     switch (data.desc) {
         case 'small':
-            classes = `h-5 w-5 ${type} m-2 `
+            classes = `h-5 w-5 ${type}`
             break;
         case 'large':
             classes = `absolute ${type} h-full w-full animate-swivel md:pb-1`
@@ -26,19 +27,22 @@ function Icon({ type, data }) {
             classes = `${type} w-full h-full`
             break;
         case 'play':
-            classes = `${type} h-full w-full pointer-events-none`
+            classes = `${type} h-content w-content pointer-events-none text-white `
+            break;
+        case 'pause':
+            classes = `${type} h-content w-content pointer-events-none `
             break;
         case 'detail':
             classes = `absolute h-full w-full animate-clockwise opacity-10 text-neutral-700 grid content-center justify-center pointer-events-none`
             break;
         case 'score':
-            classes = `h-10 w-10 md:h-16 md:w-16 lg:w-10 lg:h-10 ${type}`
+            classes = `h-conent w-content pb-1 ${type}`
             break;
         case 'notequal':
-            classes = `h-10 w-10 md:h-16 md:w-16 lg:w-10 lg:h-10 ${type}`
+            classes = `h-content w-content  ${type}`
             break;
         case 'equal':
-            classes = `h-10 w-10 md:h-16 md:w-16 lg:w-10 lg:h-10 ${type}`
+            classes = `h-content w-content  ${type}`
             break;
 
         default:
@@ -53,7 +57,8 @@ function Icon({ type, data }) {
         detail: <DetailSVG className={classes} />,
         score: <StarSVG className={classes} />,
         notequal: <NotEqualSVG className={classes} />,
-        equal: <EqualSVG className={classes} />
+        equal: <EqualSVG className={classes} />,
+        pause: <PauseSVG className={classes} />,
     }
     return library[data.desc]
 }

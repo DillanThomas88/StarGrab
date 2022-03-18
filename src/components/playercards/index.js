@@ -9,8 +9,8 @@ function PlayerCards({props}){
     
     const [player,setplayer] = useState({
         turn: 0,
-        player1: { data: true, title: 'Player 1', name: 'LooseyGoosey', random: randomnum1, star: 0},
-        player2: { data: true, title: 'Player 2', name: 'CrazyGhost864', random: randomnum2, star: 0}
+        player1: { data: true, title: 'Player 1', name: 'LooseyGoosey', random: randomnum1, star: 0, style: 'animate-up'},
+        player2: { data: true, title: 'Player 2', name: 'CrazyGhost864', random: randomnum2, star: 0, style: 'animate-down'}
     })
     
     const GetInfo = () => {
@@ -45,6 +45,7 @@ function PlayerCards({props}){
                             name: 'LooseyGoosey', 
                             random: randomnum1, 
                             star: starTotal + prevState.player1.star,
+                            style: 'animate-up'
                         },
                         player2: prevState.player2
                     }))
@@ -58,6 +59,7 @@ function PlayerCards({props}){
                             name: 'CrazyGhost864', 
                             random: randomnum2, 
                             star: starTotal + prevState.player2.star,
+                            style: 'animate-down'
                         }
                     }))
                 }
@@ -71,7 +73,7 @@ function PlayerCards({props}){
 
     return (<>
     <div className='flex justify-center'>
-          <div className=' grid content-center justify-center mt-5 md:mt-8 lg:mt-5'>
+          <div className='realtive w-full h-full flex items-center justify-center mt-6 md:mt-8 lg:mt-5'>
             <Player props={player.player1} GetInfo={GetInfo} />
             <Player props={player.player2} GetInfo={GetInfo} />
           </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Tile from './tile'
 import Icon from './tile/icons'
 import Player from '../playercards/player'
+import Timer from './timer'
 
 function Main() {
 
@@ -21,6 +22,7 @@ function Main() {
         return board
     }
     const [tiles, settiles] = useState(board())
+    const [timer, setTimer] = useState('pause')
     const [state, setstate] = useState({
         randomNum: Math.floor(Math.random() * 15) + 10,
         total: 0
@@ -91,10 +93,12 @@ function Main() {
             let parent = element.parentElement.parentElement
             total += parseInt(parent.getAttribute('datanum'))
         });
-        if(x === 'reset'){ setstate({
-            randomNum: Math.floor(Math.random() * 15) + 10,
-            total: 0
-        })}
+        if (x === 'reset') {
+            setstate({
+                randomNum: Math.floor(Math.random() * 15) + 10,
+                total: 0
+            })
+        }
         let color = {
             text: 'text-neutral-500',
             bg: 'bg-neutral-700 '
@@ -105,24 +109,46 @@ function Main() {
                 bg: 'bg-neutral-100'
             }
         }
-        return (
-            <div className={` ${color.text}  flex justify-between items-center text-2xl md:text-4xl lg:text-2xl`}>
-                <div className='flex justify-start items-center'>
-                    <div className='w-14 lg:w-10 text-center'>{state.randomNum}</div>
-                    {total !== state.randomNum
-                        ? <Icon data={{ desc: 'notequal' }} />
-                        : <Icon data={{ desc: 'equal' }} type={color} />
-                    }
-                    <div className='w-14 lg:w-10 text-center'>{total === 0 ? 0 : total}</div>
+        const handletimerReset = () => {
+            setTimer('pause')
+        }
+
+        return (<>
+            <div className={`flex justify-between text-xl`}>
+                <div className='text-neutral-500 flex flex-col justify-center items-center '>
+                    <Timer data={{ timer, handletimerReset }} />
+
                 </div>
-                <button onClick={handleNewCards}
-                    disabled={total !== state.randomNum ? true : false} className={`${color.bg} w-40 lg:w-28 rounded-md px-4 py-2 uppercase text-neutral-900 `}>
-                    {total !== state.randomNum
-                        ? 'grab'
-                        : 'Grab'
-                    }
-                </button>
+                <div className='flex px-3 border border-neutral-700 rounded-lg h-14 flex justify-between items-center w-20 bg-white text-neutral-900 text-2xl my-4'>
+                    {/* <Icon data={{desc: 'score'}} type={'text-neutral-900'} />
+                    <div>=</div>
+                    <div>0</div> */}
+                        <div className='w-full text-center text-4xl'>{state.randomNum}</div>
+
+                </div>
+                <div className={`flex ${color.text} flex-col justify-center items-start `}>
+                    <div className='flex py-1 px-2 border border-neutral-700 rounded-lg'>
+
+                    <div className='w-7 text-center'>{state.randomNum}</div>
+                        <div className='w-7'>
+                            {total !== state.randomNum
+                                ? <Icon data={{ desc: 'notequal' }} />
+                                : <Icon data={{ desc: 'equal' }} type={color} />
+                            }
+                        </div>
+                        <div className='w-7 text-center'>{total === 0 ? 0 : total}</div>
+                    </div>
+                    <div className='text-sm font-normal text-center w-full'>Match</div>
+                </div>
             </div>
+            <button onClick={handleNewCards}
+                disabled={total !== state.randomNum ? true : false} className={`${color.bg} w-full mt-2 rounded-md px-4 py-2 uppercase text-neutral-900 `}>
+                {total !== state.randomNum
+                    ? 'Not Ready'
+                    : 'Collect'
+                }
+            </button>
+        </>
         )
     }
 
@@ -229,6 +255,10 @@ function Main() {
     const handleFoldingAnimations = (e) => {
         e.target.classList.toggle('animate-fadeOut')
         e.target.classList.toggle('pointer-events-none')
+        let t = setInterval(() => {
+            clearInterval(t)
+            setTimer('start')
+        }, 1500);
 
         const cards = document.querySelectorAll('.fold-target')
         const getRows = () => {
@@ -276,6 +306,7 @@ function Main() {
 
     }
 
+
     return (
         <div
             className="grid relative  content-center justify-center w-screen">
@@ -284,23 +315,20 @@ function Main() {
                 <div className='mr-2'></div>
                 {/* <Icon data={{ desc: 'play' }} type={'text-white'} /> */}
             </button>
+            <div className='grid w-full justify-center content-center'>
+                <div onClick={(e) => handleSelected(e)} className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+                    {tiles.map((data, index) => {
+                        return (
+                            <div className='tile' key={index} >
+                                {data}
+                            </div>
+                        )
+                    })}
 
-            <div onClick={(e) => handleSelected(e)} className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
-                {tiles.map((data, index) => {
-                    return (
-                        <div className='tile' key={index} >
-                            {data}
-                        </div>
-                    )
-                })}
-
-            </div>
-
-
-            <div className='rounded-lg py-2 mt-5 font-semibold'>
-                <div>
-                    {HandleCounter()}
                 </div>
+            </div>
+            <div className='py-1 font-semibold'>
+                {HandleCounter()}
             </div>
 
 

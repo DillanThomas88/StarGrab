@@ -51,11 +51,11 @@ function Tile({ index }) {
             datacolor={type}
             row={index.row}
             col={index.col}
-            star={isLucky <= 5 ? 'true' : 'false'}
+            star={isLucky <= 12 ? 'true' : 'false'}
             className={`relative fold-target h-16 w-16 md:h-24 md:w-24 lg:h-12 lg:w-12 pointer-events-none ${colorObj.text} font-bold rounded-md grid  text-3xl md:text-5xl lg:text-3xl`}>
             <div className='absolute h-full w-full'>
                 <div className={` overflow-hidden border-2 md:border-4 lg:border-2 border-neutral-600  h-full w-full rounded-sm md:rounded-md lg:rounded-sm`}>
-                    {isLucky > 5
+                    {isLucky > 12
                         ? <>
                             <div className={`relative grid content-center justify-center text-center h-full`}>
                                 {number}

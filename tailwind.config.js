@@ -15,7 +15,9 @@ module.exports = {
         clockwise: 'rotate 21s infinite linear',
         select: 'select .2s forwards',
         deselect: 'select .5s reverse',
-        collect: 'collect 1s infinite'
+        collect: 'collect 1s infinite',
+        up: 'slide .5s forwards',
+        down: 'slide .5s reverse forwards',
       },
       keyframes: {
         fade: {
@@ -54,6 +56,11 @@ module.exports = {
           '0%': { transform: 'scale(1)', opacity: 1},
           '50%': { transform: 'scale(1.5)', opacity: 0},
           '100%': { transform: 'scale(1.5)', opacity: 0},
+        },
+        slide: {
+          '0%': {transform: 'translateY(3em)', opacity: .25},
+          '100%': {transform: 'translateY(0em)', opacity: 1},
+
         }
 
 

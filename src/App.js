@@ -5,6 +5,7 @@ import Header from './components/header';
 import Footer from './components/footer'
 import Main from './components/main'
 import PlayerCards from './components/playercards';
+import Icon from './components/main/tile/icons';
 
 
 
@@ -19,14 +20,16 @@ function App() {
       </header>
       <main className=" grid  content-start lg:content-center lg:h-full lg:pb-10">
         <div className='grid text-center my-4 md:my-8 lg:my-4'>
-          <div className='text-3xl md:text-5xl lg:text-2xl uppercase'>Star Grab</div>
-          <div className='text-lg md:text-xl lg:text-lg'>Collect 10 stars to win !</div>
+          <div className='text-3xl md:text-5xl lg:text-2xl uppercase flex justify-center items-center font-thin'>
+            St<Icon data={{desc: 'score'}} />r Grab
+            </div>
+          {/* <div className='text-lg md:text-xl lg:text-lg'>Collect 200 stars to win !</div> */}
           
 
         </div>
         <Main />
 
-        {/* <PlayerCards /> */}
+        <PlayerCards />
 
 
       </main>
