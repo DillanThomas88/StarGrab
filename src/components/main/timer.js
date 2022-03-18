@@ -68,7 +68,7 @@ const Timer = ({data}) => {
                     if (y < 10 && y >= 0) {
 
                         setSeconds(data => ({
-                            sec: '0' + data.sec--,
+                            sec: '0' + data.sec - 1,
                             milli: 99
                         }))
                     } else if (y < 0) {

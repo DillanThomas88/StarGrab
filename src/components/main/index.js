@@ -23,6 +23,7 @@ function Main() {
     }
     const [tiles, settiles] = useState(board())
     const [timer, setTimer] = useState('pause')
+    const [collection, setCollection] = useState(0)
     const [state, setstate] = useState({
         randomNum: Math.floor(Math.random() * 15) + 10,
         total: 0
@@ -69,6 +70,7 @@ function Main() {
         let selected = document.querySelectorAll('.selected')
         let alltiles = queryTiles.map(data => data.children[0])
         let board = []
+        let starTotal = collection
         alltiles.forEach((element, index) => {
             let row = parseInt(element.getAttribute('row'))
             let col = parseInt(element.getAttribute('col'))
@@ -76,11 +78,14 @@ function Main() {
             if (element.children[0].children[0].classList.contains('selected')) {
                 applyremoveStyle(element.parentElement, 'remove')
                 board.push(<Tile index={{ row: row, col: col }} />)
+
+                if (element.getAttribute('star') === 'true') { starTotal += parseInt(element.getAttribute('datanum')) }
             }
             else { board.push(tiles[index]) }
 
         });
         settiles(board)
+        setCollection(starTotal)
         HandleCounter('reset')
 
     }
@@ -328,6 +333,11 @@ function Main() {
 
             <div className='py-1 font-semibold'>
                 {HandleCounter()}
+            </div>
+            <div className='flex w-full justify-center text-center'>
+                <div className='text-left'>total</div>
+                <div className='text-center px-4'>=</div>
+                <div className='text-right'>{collection}</div>
             </div>
 
         </div>
