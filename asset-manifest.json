@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/stargrip/static/css/main.e54a9b09.css",
-    "main.js": "/stargrip/static/js/main.ee146d20.js",
+    "main.css": "/stargrip/static/css/main.98cc0367.css",
+    "main.js": "/stargrip/static/js/main.6dabf0af.js",
     "static/js/787.ca78f21f.chunk.js": "/stargrip/static/js/787.ca78f21f.chunk.js",
     "static/media/pretty.svg": "/stargrip/static/media/pretty.d67dfbf4b7323dd4b225b7bbb97f8e3b.svg",
     "static/media/diamond.svg": "/stargrip/static/media/diamond.099e8701e926ec73c6ab2223df175d98.svg",
@@ -10,21 +10,22 @@
     "static/media/rays.svg": "/stargrip/static/media/rays.fab27f8a75c82d0a5ad0bf3f675777cc.svg",
     "index.html": "/stargrip/index.html",
     "static/media/star.svg": "/stargrip/static/media/star.6508ce82e2bbbbbba52fd9beda3f4d6c.svg",
+    "static/media/settings.svg": "/stargrip/static/media/settings.ceca2a89c31a908f933b372b3d9940e2.svg",
     "static/media/icos.svg": "/stargrip/static/media/icos.3e17afc8b2ca9295642365d22182e8c6.svg",
-    "static/media/settings.svg": "/stargrip/static/media/settings.058d048e6af44740d1fd9e0b283e12b5.svg",
     "static/media/notequal.svg": "/stargrip/static/media/notequal.1435f2131d90ff6825387f0732baec7a.svg",
     "static/media/equal.svg": "/stargrip/static/media/equal.cd22ddab0a4194e76a7ee61e4b61a244.svg",
     "static/media/close-left.svg": "/stargrip/static/media/close-left.0a84c6ec0cd75d31ef6192901d94aee9.svg",
-    "static/media/friends.svg": "/stargrip/static/media/friends.5bcb65879ca1e6b0e97272affe7a0d41.svg",
+    "static/media/menu.svg": "/stargrip/static/media/menu.675bf562dae57efabb1329e5b7c9c682.svg",
     "static/media/close-right.svg": "/stargrip/static/media/close-right.0a76a8c044b600f942b67581e08f3b8e.svg",
+    "static/media/friends.svg": "/stargrip/static/media/friends.afa326ec71b8ca59d26c8b503a9e90e9.svg",
     "static/media/pause.svg": "/stargrip/static/media/pause.7ca7f7a2220289bc93e92e13ce122923.svg",
     "static/media/play.svg": "/stargrip/static/media/play.9528a76730dd9a708cba15e7329b0ecb.svg",
-    "main.e54a9b09.css.map": "/stargrip/static/css/main.e54a9b09.css.map",
-    "main.ee146d20.js.map": "/stargrip/static/js/main.ee146d20.js.map",
+    "main.98cc0367.css.map": "/stargrip/static/css/main.98cc0367.css.map",
+    "main.6dabf0af.js.map": "/stargrip/static/js/main.6dabf0af.js.map",
     "787.ca78f21f.chunk.js.map": "/stargrip/static/js/787.ca78f21f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e54a9b09.css",
-    "static/js/main.ee146d20.js"
+    "static/css/main.98cc0367.css",
+    "static/js/main.6dabf0af.js"
   ]
 }
