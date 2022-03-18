@@ -119,17 +119,20 @@ function Main() {
                     <Timer data={{ timer, handletimerReset }} />
 
                 </div>
-                <div className='flex px-3 border border-neutral-700 rounded-lg h-14 flex justify-between items-center w-20 bg-white text-neutral-900 text-2xl my-4'>
-                    {/* <Icon data={{desc: 'score'}} type={'text-neutral-900'} />
-                    <div>=</div>
-                    <div>0</div> */}
-                        <div className='w-full text-center text-4xl'>{state.randomNum}</div>
+                <div className='relative my-4 h-16 w-24'>
+
+                    <button onClick={handleNewCards}
+                        disabled={total !== state.randomNum ? true : false}
+                        className={`absolute z-50 w-full h-full flex px-4 rounded-lg flex justify-between items-center bg-white text-neutral-900 text-2xl`}>
+                        <div className='w-full text-center text-5xl'>{state.randomNum}</div>
+                    </button>
+                    <div className={`${total === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-white rounded-lg z-10`}></div>
 
                 </div>
                 <div className={`flex ${color.text} flex-col justify-center items-start `}>
                     <div className='flex py-1 px-2 border border-neutral-700 rounded-lg'>
 
-                    <div className='w-7 text-center'>{state.randomNum}</div>
+                        <div className='w-7 text-center'>{state.randomNum}</div>
                         <div className='w-7'>
                             {total !== state.randomNum
                                 ? <Icon data={{ desc: 'notequal' }} />
@@ -141,13 +144,6 @@ function Main() {
                     <div className='text-sm font-normal text-center w-full'>Match</div>
                 </div>
             </div>
-            <button onClick={handleNewCards}
-                disabled={total !== state.randomNum ? true : false} className={`${color.bg} w-full mt-2 rounded-md px-4 py-2 uppercase text-neutral-900 `}>
-                {total !== state.randomNum
-                    ? 'Not Ready'
-                    : 'Collect'
-                }
-            </button>
         </>
         )
     }
@@ -253,6 +249,7 @@ function Main() {
     }
 
     const handleFoldingAnimations = (e) => {
+        console.log(e.target);
         e.target.classList.toggle('animate-fadeOut')
         e.target.classList.toggle('pointer-events-none')
         let t = setInterval(() => {
@@ -308,29 +305,30 @@ function Main() {
 
 
     return (
-        <div
-            className="grid relative  content-center justify-center w-screen">
-            <button className='z-50 text-xl absolute uppercase grid content-center justify-center w-full h-full pb-20'
-                onClick={(e) => handleFoldingAnimations(e)}>
-                <div className='mr-2'></div>
-                {/* <Icon data={{ desc: 'play' }} type={'text-white'} /> */}
-            </button>
-            <div className='grid w-full justify-center content-center'>
-                <div onClick={(e) => handleSelected(e)} className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
-                    {tiles.map((data, index) => {
-                        return (
-                            <div className='tile' key={index} >
-                                {data}
-                            </div>
-                        )
-                    })}
+        <div className="grid content-center justify-center w-screen">
 
+            <div className='relative'>
+                <div onClick={(e) => handleFoldingAnimations(e)}
+                    className=' z-50 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
+
+                    <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
+                        <div className='animate-pulse '>Touch Screen to start</div>
+                    </div>
+                </div>
+                <div className='grid w-full justify-center content-center'>
+
+                    <div onClick={(e) => handleSelected(e)}
+                        className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+                        {tiles.map((data, index) => {
+                            return (<div className='tile' key={index} >{data}</div>)
+                        })}
+                    </div>
                 </div>
             </div>
+
             <div className='py-1 font-semibold'>
                 {HandleCounter()}
             </div>
-
 
         </div>
     )

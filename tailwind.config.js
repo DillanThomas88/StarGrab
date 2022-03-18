@@ -53,9 +53,10 @@ module.exports = {
           to:  {transform: 'rotate(359deg) scale(2)'}
         },
         collect: {
-          '0%': { transform: 'scale(1)', opacity: 1},
-          '50%': { transform: 'scale(1.5)', opacity: 0},
-          '100%': { transform: 'scale(1.5)', opacity: 0},
+          '0%': { transform: 'scaleX(1)', opacity: 1},
+          '25%': { transform: 'scaleX(1.2)', opacity: 0},
+          '50%': { transform: 'scaleX(1)', opacity: 0},
+          '100%': { transform: 'scaleX(1)', opacity: 0},
         },
         slide: {
           '0%': {transform: 'translateY(3em)', opacity: .25},
