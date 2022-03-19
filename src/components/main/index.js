@@ -3,6 +3,7 @@ import Tile from './tile'
 import Icon from './tile/icons'
 import Player from '../playercards/player'
 import Timer from './timer'
+import ScoreDisplay from './score-display'
 
 function Main() {
 
@@ -105,7 +106,7 @@ function Main() {
             })
         }
         let color = {
-            text: 'text-neutral-500',
+            text: 'text-neutral-600',
             bg: 'bg-neutral-700 '
         }
         if (total == state.randomNum) {
@@ -119,7 +120,8 @@ function Main() {
         }
 
         return (<>
-            <div className={`flex justify-between text-xl`}>
+        
+            <div className={`flex justify-between text-xl font-normal`}>
                 <div className='text-neutral-500 flex flex-col justify-center items-center '>
                     <Timer data={{ timer, handletimerReset }} />
 
@@ -134,19 +136,19 @@ function Main() {
                     <div className={`${total === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-white rounded-lg z-10`}></div>
 
                 </div>
-                <div className={`flex ${color.text} flex-col justify-center items-start `}>
-                    <div className='flex py-1 px-2 border border-neutral-700 rounded-lg'>
-
-                        <div className='w-7 text-center'>{state.randomNum}</div>
+                <div className={`flex text-neutral-600 my-4 h-16 w-24 flex-col justify-center items-start `}>
+                    <div className='flex border border-neutral-700 rounded-lg'>
+                    <ScoreDisplay score={collection} />
+                        {/* <div className='w-7 text-center'>{state.randomNum}</div>
                         <div className='w-7'>
                             {total !== state.randomNum
                                 ? <Icon data={{ desc: 'notequal' }} />
                                 : <Icon data={{ desc: 'equal' }} type={color} />
                             }
                         </div>
-                        <div className='w-7 text-center'>{total === 0 ? 0 : total}</div>
+                        <div className='w-7 text-center'>{total === 0 ? 0 : total}</div> */}
                     </div>
-                    <div className='text-sm font-normal text-center w-full'>Match</div>
+                    <div className='text-sm  text-neutral-600 text-center w-full'>Stars</div>
                 </div>
             </div>
         </>
@@ -334,11 +336,8 @@ function Main() {
             <div className='py-1 font-semibold'>
                 {HandleCounter()}
             </div>
-            <div className='flex w-full justify-center text-center'>
-                <div className='text-left'>total</div>
-                <div className='text-center px-4'>=</div>
-                <div className='text-right'>{collection}</div>
-            </div>
+            
+
 
         </div>
     )

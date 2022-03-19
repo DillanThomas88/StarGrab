@@ -18,6 +18,7 @@ module.exports = {
         collect: 'collect 1s infinite',
         up: 'slide .5s forwards',
         down: 'slide .5s reverse forwards',
+        grab: 'grab .06s linear infinite'
       },
       keyframes: {
         fade: {
@@ -62,6 +63,10 @@ module.exports = {
           '0%': {transform: 'translateY(3em)', opacity: .25},
           '100%': {transform: 'translateY(0em)', opacity: 1},
 
+        },
+        grab: {
+          '0%': { transform: 'scale(1)'},
+          '100%': { transform: 'scale(1.5)'},
         }
 
 

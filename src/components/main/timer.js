@@ -105,12 +105,12 @@ const Timer = ({data}) => {
         <div className={` flex flex-col justify-center items-center`}>
             <div className=' px-4 py-1 border border-neutral-700 rounded-md flex '>
                 <div className='w-5 text-center timer'>{seconds.sec}</div>
-                <div className='px-3 w-5 font-normal text-center timer opacity-50'>:</div>
-                <div className='w-5 text-center font-normal timer opacity-50'>{seconds.milli}</div>
+                <div className='px-3 w-5  text-center timer opacity-50'>:</div>
+                <div className='w-5 text-center  timer opacity-50'>{seconds.milli}</div>
                 <div className='ml-2' >
                 </div>
             </div>
-            <div className='text-sm font-normal timer opacity-50'>Timer</div>
+            <div className='text-sm timer opacity-50'>Timer</div>
 
         </div>
     );

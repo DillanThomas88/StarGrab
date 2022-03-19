@@ -18,7 +18,7 @@ function Icon({ type, data }) {
 
     switch (data.desc) {
         case 'small':
-            classes = `h-5 w-5 ${type}`
+            classes = `h-content w-content ${type}`
             break;
         case 'large':
             classes = `absolute ${type} h-full w-full animate-swivel md:pb-1`

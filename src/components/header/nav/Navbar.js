@@ -18,7 +18,7 @@ function NavBar() {
           <div className='grid text-center'>
 
             <div className='text-3xl md:text-5xl lg:text-2xl uppercase flex justify-center items-center text-neutral-100 font-normal'>
-              Star<Icon data={{ desc: 'score' }} type={'text-neutral-100'} />Grab
+              Nexus
             </div>
 
           </div>
