@@ -64,8 +64,8 @@ function StarterModal({modalFunction}) {
 
     return(
         <>
-          <div className='fixed animate-fadeIn w-full h-full z-50 flex justify-center items-center'>
-            <div className={`flex flex-col question-modal animate-slideUp relative justify-start items-start w-5/6 rounded-md border border-neutral-600 h-fit pb-5 bg-neutral-900 shadow-md shadow-black text-xs px-4`}>
+          <div className='fixed animate-fadeIn w-full px-4 h-full z-50 flex justify-center items-center'>
+            <div className={`flex flex-col question-modal animate-slideUp relative justify-start items-start w-full rounded-md border border-neutral-600 h-fit pb-5 bg-neutral-900 shadow-md shadow-black text-xs px-4`}>
               <button onClick={modalFunction} className='w-6 h-6 absolute right-2 top-2 cursor-pointer'>
                 <Icon data={{ desc: 'close' }} />
               </button>
