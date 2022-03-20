@@ -45,8 +45,8 @@ function ScoreDisplay({ score }) {
 
 
     return (<>
-        <div className='flex w-24 justify-between px-4 py-1 text-xl text-center font-normal'>
-            <div className='w-5 flex justify-center items-center'>
+        <div className='flex w-24 justify-between pr-4 pl-2 py-1 text-xl text-center font-normal'>
+            <div className='w-7 h-7 flex justify-center items-center'>
 
                 <Icon data={{ desc: 'small' }} />
             </div>
