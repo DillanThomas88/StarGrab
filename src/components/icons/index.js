@@ -1,14 +1,18 @@
-import { ReactComponent as StarSVG } from './star.svg'
-import { ReactComponent as BackDiamondSVG } from './backside/diamond.svg'
-import { ReactComponent as BackFlowerSVG } from './backside/flower.svg'
-import { ReactComponent as BackIcosSVG } from './backside/icos.svg'
-import { ReactComponent as BackPrettySVG } from './backside/pretty.svg'
-import { ReactComponent as BackSimpleSVG } from './backside/simple.svg'
-import { ReactComponent as PlaySVG } from './play.svg'
-import { ReactComponent as PauseSVG } from './pause.svg'
-import { ReactComponent as DetailSVG } from './rays.svg'
-import { ReactComponent as NotEqualSVG } from './notequal.svg'
-import { ReactComponent as EqualSVG } from './equal.svg'
+import { ReactComponent as StarSVG } from './card/star.svg'
+import { ReactComponent as BackDiamondSVG } from './card/diamond.svg'
+import { ReactComponent as BackFlowerSVG } from './card/flower.svg'
+import { ReactComponent as BackIcosSVG } from './card/icos.svg'
+import { ReactComponent as BackPrettySVG } from './card/pretty.svg'
+import { ReactComponent as BackSimpleSVG } from './card/simple.svg'
+import { ReactComponent as DetailSVG } from './card/rays.svg'
+import { ReactComponent as PlaySVG } from './ui/play.svg'
+import { ReactComponent as PauseSVG } from './ui/pause.svg'
+import { ReactComponent as NotEqualSVG } from './ui/notequal.svg'
+import { ReactComponent as EqualSVG } from './ui/equal.svg'
+import { ReactComponent as LockSVG } from './ui/lock.svg'
+import { ReactComponent as UnlockSVG } from './ui/unlock.svg'
+import { ReactComponent as QuestionSVG } from './ui/question.svg'
+import { ReactComponent as CloseSVG } from './ui/close.svg'
 
 function Icon({ type, data }) {
 
@@ -44,6 +48,20 @@ function Icon({ type, data }) {
         case 'equal':
             classes = `h-content w-content  ${type}`
             break;
+        case 'lock':
+            classes = `h-content w-content  ${type}`
+            break;
+        case 'unlock':
+            classes = `h-content w-content  ${type}`
+            break;
+        case 'question':
+            classes = `h-content w-content  ${type}`
+            break;
+            case 'close':
+                classes = `h-content w-content  ${type}`
+                break;
+
+
 
         default:
             break;
@@ -59,6 +77,10 @@ function Icon({ type, data }) {
         notequal: <NotEqualSVG className={classes} />,
         equal: <EqualSVG className={classes} />,
         pause: <PauseSVG className={classes} />,
+        lock: <LockSVG className={classes} />,
+        unlock: <UnlockSVG className={classes} />,
+        question: <QuestionSVG className={classes} />,
+        close: <CloseSVG className={classes} />,
     }
     return library[data.desc]
 }

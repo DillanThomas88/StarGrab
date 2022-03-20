@@ -1,4 +1,4 @@
-import Icon from "../../main/tile/icons"
+import Icon from "../../icons"
 import react, {useState} from "react"
 
 

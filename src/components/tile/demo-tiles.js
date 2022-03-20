@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import Icon from './icons'
+import Icon from '../icons'
 
-function Tile({ index }) {
-    let number = Math.floor(Math.random() * 13 + 1)
-    let type = Math.floor(Math.random() * 4 + 1)
-    let isLucky = Math.floor(Math.random() * 100)
+function DemoTiles({ index }) {
 
     const getColors = () => {
-        switch (type) {
+        switch (index.type) {
             case 1:
                 return {
                     bg: 'bg-gradient-to-tr from-neutral-700 to-neutral-600',
@@ -42,43 +39,35 @@ function Tile({ index }) {
         }
     }
 
-    let colorObj = getColors(type)
+    let colorObj = getColors(index.type)
     console.log();
 
     return (
         <div
-            datanum={number}
-            datacolor={type}
-            row={index.row}
-            col={index.col}
-            star={isLucky <= 12 ? 'true' : 'false'}
-            className={`relative fold-target h-16 w-16 md:h-24 md:w-24 lg:h-12 lg:w-12 pointer-events-none ${colorObj.text} font-bold rounded-md grid  text-3xl md:text-5xl lg:text-3xl`}>
+            datanum={index.number}
+            datacolor={index.type}
+            star={index.star}
+            className={`relative fold-target h-10 w-10 md:h-24 md:w-24 lg:h-12 lg:w-12 pointer-events-none ${colorObj.text} font-bold rounded-md grid  text-xl`}>
             <div className='absolute h-full w-full'>
-                <div className={` overflow-hidden border-2 md:border-4 lg:border-2 border-neutral-600  h-full w-full rounded-sm md:rounded-md lg:rounded-sm`}>
-                    {isLucky > 12
+                <div className={` overflow-hidden border md:border-4 lg:border-2 border-neutral-600  h-full w-full rounded-sm md:rounded-md lg:rounded-sm`}>
+                    {index.star !== "true"
                         ? <>
                             <div className={`relative grid content-center justify-center text-center h-full`}>
-                                {number}
+                                {index.number}
                             </div>
                         </>
                         : <>
                             <div className={`relative grid content-center justify-center text-center text-neutral-900 h-full`}>
                                 <Icon data={{desc: 'detail'}} />
                                 <Icon data={{desc: 'large'}} type={colorObj.text} />
-                                <div className='z-10 pt-2 lg:pt-0 text-2xl md:text-3xl lg:text-xl'>{number}</div>
+                                <div className='z-10 pt-1 text-lg'>{index.number}</div>
                             </div>
 
                         </>}
                 </div>
             </div>
-            <div className='z-10 absolute w-full h-full pointer-events-none'>
-                <div className={`${colorObj.text} bg-neutral-900 overflow-hidden grid h-full w-full justify-center content-center border-2 border-neutral-700 rounded-sm md:rounded-md lg:rounded-sm `}>
-                    <Icon index={number} type={'text-neutral-800'} data={{ desc: 'background' }} />
-                </div>
-
-            </div>
         </div>
     )
 }
 
-export default Tile
+export default DemoTiles

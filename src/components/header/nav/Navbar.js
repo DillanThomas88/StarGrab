@@ -4,7 +4,7 @@ import { ReactComponent as FriendsSVG } from "./friends.svg";
 import {ReactComponent as MenuSVG} from './menu.svg'
 import { ReactComponent as CloseLeftSVG } from "./close-left.svg";
 import { ReactComponent as CloseRightSVG } from "./close-right.svg";
-import Icon from "../../main/tile/icons";
+import Icon from "../../icons";
 
 function NavBar() {
 

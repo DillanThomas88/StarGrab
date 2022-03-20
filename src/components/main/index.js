@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Tile from './tile'
-import Icon from './tile/icons'
+import Tile from '../tile'
+import Icon from '../icons'
 import Player from '../playercards/player'
-import Timer from './timer'
+import Timer from './timer-display'
 import ScoreDisplay from './score-display'
 
 function Main() {
@@ -29,6 +29,7 @@ function Main() {
         randomNum: Math.floor(Math.random() * 15) + 10,
         total: 0
     })
+
 
     const getColors = (type) => {
         switch (type) {
@@ -93,12 +94,13 @@ function Main() {
 
 
     const HandleCounter = (x) => {
-        let total = 0
+        let tally = 0
         const selectedTiles = document.querySelectorAll('.selected')
         selectedTiles.forEach(element => {
             let parent = element.parentElement.parentElement
-            total += parseInt(parent.getAttribute('datanum'))
+            tally += parseInt(parent.getAttribute('datanum'))
         });
+        // setTotal(total)
         if (x === 'reset') {
             setstate({
                 randomNum: Math.floor(Math.random() * 15) + 10,
@@ -109,7 +111,7 @@ function Main() {
             text: 'text-neutral-600',
             bg: 'bg-neutral-700 '
         }
-        if (total == state.randomNum) {
+        if (tally == state.randomNum) {
             color = {
                 color: 'text-red-500',
                 bg: 'bg-neutral-100'
@@ -120,35 +122,34 @@ function Main() {
         }
 
         return (<>
-        
-            <div className={`flex justify-between text-xl font-normal`}>
-                <div className='text-neutral-500 flex flex-col justify-center items-center '>
-                    <Timer data={{ timer, handletimerReset }} />
 
-                </div>
-                <div className='relative my-4 h-16 w-24'>
+            <div className={`text-xl font-normal`}>
 
-                    <button onClick={handleNewCards}
-                        disabled={total !== state.randomNum ? true : false}
-                        className={`absolute z-50 w-full h-full flex px-4 rounded-lg flex justify-between items-center bg-white text-neutral-900 text-2xl`}>
-                        <div className='w-full text-center text-5xl'>{state.randomNum}</div>
-                    </button>
-                    <div className={`${total === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-white rounded-lg z-10`}></div>
+                <div className='flex justify-between my-4'>
 
-                </div>
-                <div className={`flex text-neutral-600 my-4 h-16 w-24 flex-col justify-center items-start `}>
-                    <div className='flex border border-neutral-700 rounded-lg'>
-                    <ScoreDisplay score={collection} />
-                        {/* <div className='w-7 text-center'>{state.randomNum}</div>
-                        <div className='w-7'>
-                            {total !== state.randomNum
-                                ? <Icon data={{ desc: 'notequal' }} />
-                                : <Icon data={{ desc: 'equal' }} type={color} />
-                            }
-                        </div>
-                        <div className='w-7 text-center'>{total === 0 ? 0 : total}</div> */}
+                    <div className='text-neutral-500 flex flex-col justify-start items-center '>
+                        <Timer data={{ timer, handletimerReset }} />
+
                     </div>
-                    <div className='text-sm  text-neutral-600 text-center w-full'>Stars</div>
+                    <div className='relative w-20'>
+
+                        <button onClick={handleNewCards}
+                            disabled={tally !== state.randomNum ? true : false}
+                            className={`absolute z-40 w-full h-full flex flex-col px-4 rounded-lg flex justify-start items-center bg-white text-neutral-900 mb-1`}>
+                                <div className='border-b border-neutral-600 text-sm opacity-80'>{tally}</div>
+                                
+                            <div className='w-full text-center text-4xl'>{state.randomNum}</div>
+                        </button>
+                        <div className={`${tally === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-white rounded-lg z-10 mb-1`}></div>
+
+                    </div>
+                    <div className={`flex text-neutral-600 h-16 w-24 flex-col justify-start items-start `}>
+                        <div className='flex border border-neutral-700 rounded-lg'>
+                            <ScoreDisplay score={collection} />
+
+                        </div>
+                        <div className='text-sm  text-neutral-600 text-center w-full'>Stars</div>
+                    </div>
                 </div>
             </div>
         </>
@@ -316,14 +317,17 @@ function Main() {
 
             <div className='relative'>
                 <div onClick={(e) => handleFoldingAnimations(e)}
-                    className=' z-50 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
+                    className=' z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
 
                     <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
                         <div className='animate-pulse '>Touch Screen to start</div>
+                        {/* <div className='w-full h-14 flex justify-center'>
+                            <Icon data={{ desc: 'lock' }} />
+                        </div> */}
+
                     </div>
                 </div>
                 <div className='grid w-full justify-center content-center'>
-
                     <div onClick={(e) => handleSelected(e)}
                         className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
                         {tiles.map((data, index) => {
@@ -336,7 +340,7 @@ function Main() {
             <div className='py-1 font-semibold'>
                 {HandleCounter()}
             </div>
-            
+
 
 
         </div>

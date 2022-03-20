@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import Icon from './tile/icons'
+import Icon from '../icons';
 
 function ScoreDisplay({ score }) {
 

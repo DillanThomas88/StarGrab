@@ -6,7 +6,7 @@ module.exports = {
         default: ['Montserrat']
       },
       animation: {
-        fadeIn: 'fade .525s reverse',
+        fadeIn: 'fade .2s reverse',
         fadeOut: 'fade .525s forwards',
         attention: 'attention 2.1s infinite ',
         swivel: 'swivel 1.05s infinite ',
@@ -18,12 +18,20 @@ module.exports = {
         collect: 'collect 1s infinite',
         up: 'slide .5s forwards',
         down: 'slide .5s reverse forwards',
-        grab: 'grab .06s linear infinite'
+        grab: 'grab .06s linear infinite',
+        iconOpen: 'grab .2s forwards',
+        iconClose: 'grab .2s reverse',
+        slideUp: 'slide .3s forwards',
+        slideDown: 'slide .3s reverse',
       },
       keyframes: {
         fade: {
           from: { opacity: 1 },
           to: { opacity: 0 },
+        },
+        slide: {
+          from: { transform: 'transition(-2em)'},
+          to: { transform: 'transition(0em)'},
         },
         attention: {
           '0%': { transform: 'scale(.9)' },
