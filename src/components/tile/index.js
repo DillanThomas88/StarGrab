@@ -5,7 +5,7 @@ function Tile({ index }) {
     let number = Math.floor(Math.random() * 13 + 1)
     let type = Math.floor(Math.random() * 4 + 1)
     let isLucky = Math.floor(Math.random() * 100)
-    let chance = 15
+    let chance = 20
 
     const getColors = () => {
         switch (type) {

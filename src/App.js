@@ -23,10 +23,10 @@ function App() {
   return (
     <div style={{ height: window.innerHeight }} className=" font-default bg-neutral-900 select-none  text-neutral-100 overflow-y-scroll lg:overflow-y-hidden">
       {isModalActive && <StarterModal modalFunction={modalFunction} />}
-      <header className="App-header w-full z-50 mb-4">
+      {/* <header className="App-header w-full z-50 mb-4">
         <Header />
-      </header>
-      <main className="relative grid content-start lg:content-center lg:h-full lg:pb-10">
+      </header> */}
+      <main className="relative grid content-start lg:content-center lg:h-full lg:pb-10 mt-6">
         
         <button onClick={(e) => modalFunction(e)}
           className='absolute w-8 h-8 ml-7 mt-2 cursor-pointer'>

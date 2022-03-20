@@ -559,6 +559,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1.25rem;
 }
 
+.mt-10{
+  margin-top: 2.5rem;
+}
+
+.mt-8{
+  margin-top: 2rem;
+}
+
 .flex{
   display: flex;
 }
@@ -643,10 +651,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-5{
   width: 1.25rem;
-}
-
-.w-5\/6{
-  width: 83.333333%;
 }
 
 .w-6{
@@ -1317,6 +1321,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-6{
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.pt-20{
+  padding-top: 5rem;
 }
 
 .pb-1{
