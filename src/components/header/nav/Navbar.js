@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as SettingsSVG } from "./settings.svg";
 import { ReactComponent as FriendsSVG } from "./friends.svg";
-import {ReactComponent as MenuSVG} from './menu.svg'
+// import {ReactComponent as MenuSVG} from './menu.svg'
 import { ReactComponent as CloseLeftSVG } from "./close-left.svg";
 import { ReactComponent as CloseRightSVG } from "./close-right.svg";
 import Icon from "../../icons";
@@ -25,7 +25,7 @@ function NavBar() {
         </div>
       </a>
       <div className=" flex">
-        <MenuSVG className="text-neutral-100" />
+        {/* <MenuSVG className="text-neutral-100" /> */}
       </div>
     </div>
   );

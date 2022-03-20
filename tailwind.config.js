@@ -7,7 +7,7 @@ module.exports = {
       },
       animation: {
         fadeIn: 'fade .2s reverse',
-        fadeOut: 'fade .525s forwards',
+        fadeOut: 'fade .2s forwards',
         attention: 'attention 2.1s infinite ',
         swivel: 'swivel 1.05s infinite ',
         foldOut: 'fold .4s forwards',
@@ -21,8 +21,8 @@ module.exports = {
         grab: 'grab .06s linear infinite',
         iconOpen: 'grab .2s forwards',
         iconClose: 'grab .2s reverse',
-        slideUp: 'slide .3s forwards',
-        slideDown: 'slide .3s reverse',
+        slideUp: 'slide .2s forwards',
+        slideDown: 'slide .2s reverse forwards',
       },
       keyframes: {
         fade: {
@@ -62,14 +62,14 @@ module.exports = {
           to:  {transform: 'rotate(359deg) scale(2)'}
         },
         collect: {
-          '0%': { transform: 'scaleX(1)', opacity: 1},
-          '25%': { transform: 'scaleX(1.2)', opacity: 0},
-          '50%': { transform: 'scaleX(1)', opacity: 0},
-          '100%': { transform: 'scaleX(1)', opacity: 0},
+          '0%': { transform: 'scale(1)', opacity: 1},
+          '25%': { transform: 'scale(1.2)', opacity: 0},
+          '50%': { transform: 'scale(1)', opacity: 0},
+          '100%': { transform: 'scale(1)', opacity: 0},
         },
         slide: {
-          '0%': {transform: 'translateY(3em)', opacity: .25},
-          '100%': {transform: 'translateY(0em)', opacity: 1},
+          '0%': {transform: 'translateY(6em)'},
+          '100%': {transform: 'translateY(0em)'},
 
         },
         grab: {

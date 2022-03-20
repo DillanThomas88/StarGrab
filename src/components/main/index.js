@@ -135,15 +135,15 @@ function Main() {
 
                         <button onClick={handleNewCards}
                             disabled={tally !== state.randomNum ? true : false}
-                            className={`absolute z-40 w-full h-full flex flex-col px-4 rounded-lg flex justify-start items-center bg-white text-neutral-900 mb-1`}>
-                                <div className='border-b border-neutral-600 text-sm opacity-80'>{tally}</div>
-                                
+                            className={`absolute z-40 w-full h-full flex flex-col rounded-lg flex justify-start items-center bg-white text-neutral-900 mb-1`}>
+                            <div className='border-b border-neutral-600 text-sm opacity-80'>{tally}</div>
+
                             <div className='w-full text-center text-4xl'>{state.randomNum}</div>
                         </button>
-                        <div className={`${tally === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-white rounded-lg z-10 mb-1`}></div>
+                        <div className={`${tally === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-transparent border border-white rounded-lg z-10 mb-1`}></div>
 
                     </div>
-                    <div className={`flex text-neutral-600 h-16 w-24 flex-col justify-start items-start `}>
+                    <div className={`flex text-neutral-600 h-16 flex-col justify-start items-start `}>
                         <div className='flex border border-neutral-700 rounded-lg'>
                             <ScoreDisplay score={collection} />
 

@@ -45,14 +45,14 @@ function ScoreDisplay({ score }) {
 
 
     return (<>
-        <div className='flex w-24 justify-between pr-4 pl-2 py-1 text-xl text-center font-normal'>
-            <div className='w-7 h-7 '>
-                <Icon data={{ desc: 'small' }} />
+        <div className='flex justify-between items-center text-xl text-center font-normal px-2 py-1'>
+            <div>
+                <Icon data={{ desc: 'small' }} type={'w-7 h-7'}/>
             </div>
-            <div>=</div>
+            <div className='text-center w-5'>=</div>
             <div className={style}>
 
-                <div className=' w-4 text-white'>{count}</div>
+                <div className=' w-8 text-white text-center'>{count}</div>
             </div>
         </div>
     </>)
