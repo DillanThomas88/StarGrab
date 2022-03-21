@@ -15,7 +15,7 @@ function App() {
 
 
   const [isModalActive, setModalActive] = useState(() => {
-    if(localStorage.getItem('user') !== 0){
+    if(parseInt(localStorage.getItem('user')) !== 0){
       return false
     } else return true
   })
@@ -68,7 +68,7 @@ console.log(starColor);
         <div className=' text-center text-3xl uppercase flex justify-center items-center'>
           Star
           <div className='relative w-14 h-14 '>
-            <div className='absolute grid content-center w-full h-full justify-center text-sm pt-1 font-medium text-neutral-900'>{highScore}</div>
+            <div className='absolute grid content-center w-full h-full justify-center text-sm pt-1 font-medium text-neutral-900'>{highScore > 0 && highScore}</div>
             <Icon data={{ desc: 'small' }} type={starColor} />
           </div>
           Grab

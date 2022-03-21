@@ -330,7 +330,7 @@ function Main({setHighScore, highScore}) {
                     className='board z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
 
                     <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
-                        <div className='animate-pulse '>Touch Screen to start</div>
+                        <div className='animate-pulse z-50 '>Touch Screen to start</div>
                         {/* <div className='w-full h-14 flex justify-center'>
                             <Icon data={{ desc: 'lock' }} />
                         </div> */}
