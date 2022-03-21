@@ -7,19 +7,22 @@ import Main from './components/main'
 import PlayerCards from './components/playercards';
 import Icon from './components/icons';
 import StarterModal from './components/modals/starter-modal';
+import Toggle from './components/tools/toggle/toggle';
+import SettingsModal from './components/modals/settings-modal';
 
 
 
 function App() {
 
 
-
+  const [isDark, setIsDark] = useState(true)
   const [isModalActive, setModalActive] = useState(() => {
-    if(parseInt(localStorage.getItem('user')) !== 0){
+    if (parseInt(localStorage.getItem('user')) !== 0) {
       return false
     } else return true
   })
-  const [style, setStyle] = useState('animate-slideUp')
+  const [isSettingsActive, setSettingsActive] = useState(false)
+  const [animation, setStyle] = useState('animate-slideUp')
   const [highScore, setHighScore] = useState(
     localStorage.getItem('user')
       ? localStorage.getItem('user')
@@ -29,16 +32,15 @@ function App() {
 
   const getColor = () => {
     let x = parseInt(highScore)
-    if(x < 50) return 'text-white'
-    else if (x >= 50 && x < 75 ) return 'text-green-500'
-    else if (x >= 75 && x < 100 ) return 'text-yellow-300'
-    else if (x >= 100 && x < 150 ) return 'text-indigo-400'
-    else if (x >= 150 && x < 200 ) return 'text-red-400'
-    else if (x >= 200 && x < 250 ) return 'text-rose-500'
+    if (x < 50) return 'text-white'
+    else if (x >= 50 && x < 75) return 'text-green-500'
+    else if (x >= 75 && x < 100) return 'text-yellow-300'
+    else if (x >= 100 && x < 150) return 'text-indigo-400'
+    else if (x >= 150 && x < 200) return 'text-red-400'
+    else if (x >= 200 && x < 250) return 'text-rose-500'
     else return 'text-pink-400'
   }
   const [starColor, setStarColor] = useState(getColor())
-console.log(starColor);
   useEffect(() => {
     if (highScore > localStorage.getItem('user')) {
 
@@ -49,7 +51,38 @@ console.log(starColor);
 
 
   const modalFunction = (e) => {
-    setModalActive(!isModalActive)
+
+    const el = e.target
+
+    if(el.classList.contains('modal')){
+      if(el.classList.contains('question')){
+        return setModalActive(!isModalActive)
+      } else if (el.classList.contains('settings')){
+        // console.log('settings');
+        return setSettingsActive(!isSettingsActive)
+      } else {
+        console.log('error');
+      }
+      return
+    }
+
+    let array = [
+      {
+        state: isModalActive,
+        function: setModalActive
+      },
+      {
+        state: isSettingsActive,
+        function: setSettingsActive
+      }
+    ]
+
+    array.forEach(element => {
+      if(element.state === true){
+        element.function(false)
+        return
+      }
+    });
   }
 
   useEffect(() => {
@@ -58,11 +91,12 @@ console.log(starColor);
 
   return (
     <div style={{ height: window.innerHeight }} className=" font-default bg-neutral-900 select-none  text-neutral-100 overflow-y-scroll lg:overflow-y-hidden">
-      {isModalActive && <StarterModal modalFunction={modalFunction} data={style} />}
+      {isModalActive && <StarterModal modalFunction={modalFunction} animation={animation} />}
+      {isSettingsActive && <SettingsModal modalFunction={modalFunction} animation={animation} isDark={isDark}  />}
       <header className="App-header w-full z-50  py-4 flex justify-between px-6">
         {/* <Header /> */}
         <button onClick={(e) => modalFunction(e)}
-          className='cursor-pointer'>
+          className='modal question cursor-pointer'>
           <Icon data={{ desc: 'question' }} type={'text-neutral-600 pointer-events-none'} />
         </button>
         <div className=' text-center text-3xl uppercase flex justify-center items-center'>
@@ -73,7 +107,8 @@ console.log(starColor);
           </div>
           Grab
         </div>
-        <button>
+        <button onClick={(e) => modalFunction(e)}
+          className='modal settings pointer-cursor'>
           <Icon data={{ desc: 'menu' }} type={'text-neutral-600 pointer-events-none'} />
         </button>
       </header>

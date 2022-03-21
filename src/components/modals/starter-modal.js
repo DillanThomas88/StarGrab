@@ -4,7 +4,7 @@ import Icon from '../icons';
 import DemoTiles from '../tile/demo-tiles'
 
 
-function StarterModal({ modalFunction, data }) {
+function StarterModal({ modalFunction, animation }) {
 
 
   const tileArray = [
@@ -66,7 +66,7 @@ function StarterModal({ modalFunction, data }) {
   return (
     <>
       <div className='fixed animate-fadeIn w-full px-4 h-full z-50 flex justify-center items-center'>
-        <div className={`flex flex-col question-modal ${data} relative justify-start items-center w-full rounded-md border border-neutral-600 h-fit pb-5 bg-neutral-900 shadow-md shadow-black text-xs px-4`}>
+        <div className={`flex flex-col question-modal ${animation} relative justify-start items-center w-full rounded-md border border-neutral-600 h-fit pb-5 bg-neutral-900 shadow-md shadow-black text-xs px-4`}>
           <button onClick={modalFunction} className='w-6 h-6 absolute right-2 top-2 cursor-pointer'>
             <Icon data={{ desc: 'close' }} />
           </button>

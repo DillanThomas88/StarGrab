@@ -357,7 +357,7 @@ function Main({setHighScore, highScore}) {
     )
 
     function applyremoveStyle(tile, z) {
-        console.log(tile);
+        // console.log(tile);
         let childData = tile.children[0]
         let x = childData.children[0].children[0].children[0]
         // console.log(childData);

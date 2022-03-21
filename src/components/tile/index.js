@@ -44,7 +44,6 @@ function Tile({ index }) {
     }
 
     let colorObj = getColors(type)
-    console.log();
 
     return (
         <div
