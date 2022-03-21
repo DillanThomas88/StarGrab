@@ -63,7 +63,7 @@ module.exports = {
         },
         collect: {
           '0%': { transform: 'scale(1)', opacity: 1},
-          '25%': { transform: 'scale(1.2)', opacity: 0},
+          '25%': { transform: 'scale(1.4)', opacity: 0},
           '50%': { transform: 'scale(1)', opacity: 0},
           '100%': { transform: 'scale(1)', opacity: 0},
         },

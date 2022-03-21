@@ -512,6 +512,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   z-index: -10;
 }
 
+.float-left{
+  float: left;
+}
+
 .my-4{
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -527,6 +531,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.5rem;
 }
 
+.mx-2{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mt-6{
   margin-top: 1.5rem;
 }
@@ -539,6 +548,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.25rem;
 }
 
+.mt-4{
+  margin-top: 1rem;
+}
+
 .mt-2{
   margin-top: 0.5rem;
 }
@@ -547,16 +560,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.25rem;
 }
 
-.mt-4{
-  margin-top: 1rem;
-}
-
 .mt-1{
   margin-top: 0.25rem;
 }
 
 .mb-5{
   margin-bottom: 1.25rem;
+}
+
+.mr-2{
+  margin-right: 0.5rem;
+}
+
+.mb-2{
+  margin-bottom: 0.5rem;
 }
 
 .flex{
@@ -609,6 +626,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.5rem;
 }
 
+.h-12{
+  height: 3rem;
+}
+
 .w-full{
   width: 100%;
 }
@@ -655,6 +676,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-28{
   width: 7rem;
+}
+
+.w-12{
+  width: 3rem;
+}
+
+.w-14{
+  width: 3.5rem;
+}
+
+.w-5\/12{
+  width: 41.666667%;
+}
+
+.w-4\/12{
+  width: 33.333333%;
 }
 
 @-webkit-keyframes slide{
@@ -762,8 +799,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   25%{
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
     opacity: 0;
   }
 
@@ -788,8 +825,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   25%{
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
     opacity: 0;
   }
 
@@ -1145,6 +1182,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-bottom-width: 1px;
 }
 
+.border-t{
+  border-top-width: 1px;
+}
+
 .border-green-500{
   --tw-border-opacity: 1;
   border-color: rgb(34 197 94 / var(--tw-border-opacity));
@@ -1178,6 +1219,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-neutral-700{
   --tw-border-opacity: 1;
   border-color: rgb(64 64 64 / var(--tw-border-opacity));
+}
+
+.border-neutral-500{
+  --tw-border-opacity: 1;
+  border-color: rgb(115 115 115 / var(--tw-border-opacity));
 }
 
 .bg-neutral-900{
@@ -1309,6 +1355,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.25rem;
 }
 
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .pb-1{
   padding-bottom: 0.25rem;
 }
@@ -1392,6 +1443,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-transform: uppercase;
 }
 
+.italic{
+  font-style: italic;
+}
+
 .text-neutral-100{
   --tw-text-opacity: 1;
   color: rgb(245 245 245 / var(--tw-text-opacity));
@@ -1462,6 +1517,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .opacity-50{
   opacity: 0.5;
+}
+
+.opacity-40{
+  opacity: 0.4;
+}
+
+.opacity-20{
+  opacity: 0.2;
 }
 
 .shadow-md{

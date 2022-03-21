@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Icon from '../icons';
 
-const Timer = ({data}) => {
+const Timer = ({data, handleFoldingAnimations, handleLocalStorage}) => {
 
 
-    let timerLength = 120
+    let timerLength = 20
     const [seconds, setSeconds] = useState({
         sec: timerLength,
         milli: '00'
@@ -79,6 +79,8 @@ const Timer = ({data}) => {
                             }
                         });
                         data.handletimerReset()
+                        // handleFoldingAnimations('end')
+                        handleLocalStorage()
                         toggle()
                         reset()
                     } else {

@@ -5,7 +5,7 @@ import Player from '../playercards/player'
 import Timer from './timer-display'
 import ScoreDisplay from './score-display'
 
-function Main() {
+function Main({setHighScore}) {
 
     const gridSize = 5
     const rows = 'grid-rows-5'
@@ -92,6 +92,9 @@ function Main() {
 
     }
 
+    const handleLocalStorage = () => {
+        setHighScore(collection)
+    }
 
     const HandleCounter = (x) => {
         let tally = 0
@@ -128,7 +131,7 @@ function Main() {
                 <div className='flex justify-between my-4'>
 
                     <div className='text-neutral-500 flex flex-col justify-start items-center '>
-                        <Timer data={{ timer, handletimerReset }} />
+                        <Timer data={{ timer, handletimerReset }} handleLocalStorage={handleLocalStorage} handleFoldingAnimations={handleFoldingAnimations} />
 
                     </div>
                     <div className='relative w-20'>
@@ -256,10 +259,12 @@ function Main() {
 
     }
 
-    const handleFoldingAnimations = (e) => {
-        console.log(e.target);
-        e.target.classList.toggle('animate-fadeOut')
-        e.target.classList.toggle('pointer-events-none')
+    const handleFoldingAnimations = () => {
+
+        let b = document.querySelector('.board')
+        b.classList.toggle('animate-fadeOut')
+        b.classList.toggle('pointer-events-none')
+
         let t = setInterval(() => {
             clearInterval(t)
             setTimer('start')
@@ -278,6 +283,7 @@ function Main() {
             } return array
         }
         let rows = getRows()
+
         const styles = {
             top: 'absolute h-full w-full animate-foldOut',
             bottom: 'absolute h-full w-full animate-foldIn',
@@ -290,6 +296,7 @@ function Main() {
                 clearInterval(timer)
                 element[j].children[0].classList.toggle('animate-foldIn')
                 element[j].children[1].classList.toggle('animate-foldOut')
+
                 j++
                 if (j >= gridSize) { return }
                 staggerFolding(element, j)
@@ -316,8 +323,8 @@ function Main() {
         <div className="grid content-center justify-center w-screen">
 
             <div className='relative'>
-                <div onClick={(e) => handleFoldingAnimations(e)}
-                    className=' z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
+                <div onClick={() => handleFoldingAnimations()}
+                    className='board z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
 
                     <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
                         <div className='animate-pulse '>Touch Screen to start</div>
