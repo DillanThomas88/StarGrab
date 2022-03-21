@@ -5,7 +5,7 @@ import Player from '../playercards/player'
 import Timer from './timer-display'
 import ScoreDisplay from './score-display'
 
-function Main({setHighScore}) {
+function Main({setHighScore, highScore}) {
 
     const gridSize = 5
     const rows = 'grid-rows-5'
@@ -93,7 +93,10 @@ function Main({setHighScore}) {
     }
 
     const handleLocalStorage = () => {
-        setHighScore(collection)
+        if(collection > highScore){
+
+            setHighScore(collection)
+        }
     }
 
     const HandleCounter = (x) => {

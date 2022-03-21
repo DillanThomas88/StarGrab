@@ -81,7 +81,7 @@ console.log(starColor);
 
 
         {/* <div className='font-thin text-sm text-center mb-4'>Collect stars before the timer reaches zero!</div> */}
-        <Main setHighScore={setHighScore} />
+        <Main setHighScore={setHighScore} highScore={highScore} />
 
         {/* <PlayerCards /> */}
 
