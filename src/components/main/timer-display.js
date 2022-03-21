@@ -4,7 +4,7 @@ import Icon from '../icons';
 const Timer = ({data, handleFoldingAnimations, handleLocalStorage}) => {
 
 
-    let timerLength = 20
+    let timerLength = 120
     const [seconds, setSeconds] = useState({
         sec: timerLength,
         milli: '00'

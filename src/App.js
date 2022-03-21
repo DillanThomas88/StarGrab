@@ -14,7 +14,11 @@ function App() {
 
 
 
-  const [isModalActive, setModalActive] = useState(true)
+  const [isModalActive, setModalActive] = useState(() => {
+    if(localStorage.getItem('user') === 0){
+      return false
+    } else return true
+  })
   const [style, setStyle] = useState('animate-slideUp')
   const [highScore, setHighScore] = useState(
     localStorage.getItem('user')
@@ -22,12 +26,26 @@ function App() {
       : localStorage.setItem('user', 0)
   )
 
+
+  const getColor = () => {
+    let x = parseInt(highScore)
+    if(x < 50) return 'text-white'
+    else if (x >= 50 && x < 75 ) return 'text-green-500'
+    else if (x >= 75 && x < 100 ) return 'text-yellow-300'
+    else if (x >= 100 && x < 150 ) return 'text-indigo-400'
+    else if (x >= 150 && x < 200 ) return 'text-red-400'
+    else if (x >= 200 && x < 250 ) return 'text-rose-500'
+    else return 'text-pink-400'
+  }
+  const [starColor, setStarColor] = useState(getColor())
+console.log(starColor);
   useEffect(() => {
     if (highScore > localStorage.getItem('user')) {
 
       localStorage.setItem('user', highScore)
+      setStarColor(getColor())
     }
-  }, [highScore])
+  }, [highScore, starColor])
 
 
   const modalFunction = (e) => {
@@ -51,7 +69,7 @@ function App() {
           Star
           <div className='relative w-14 h-14 '>
             <div className='absolute grid content-center w-full h-full justify-center text-sm pt-1 font-medium text-neutral-900'>{highScore}</div>
-            <Icon data={{ desc: 'small' }} />
+            <Icon data={{ desc: 'small' }} type={starColor} />
           </div>
           Grab
         </div>
