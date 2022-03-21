@@ -15,7 +15,7 @@ function App() {
 
 
   const [isModalActive, setModalActive] = useState(() => {
-    if(localStorage.getItem('user') === 0){
+    if(localStorage.getItem('user') !== 0){
       return false
     } else return true
   })
