@@ -1,16 +1,21 @@
 import React, { useState } from "react"
 
-function Toggle({ isDark, data }) {
-
-    console.log(data);
+function Toggle({ isDark, data, setIsDark }) {
     const [toggle, setToggle] = useState(() => {
+        
         if(isDark === true && data === 'dark-mode'){
             return true
         } else return false
+        
     })
 
     const handleToggle = () => {
         setToggle(!toggle)
+        if(data === 'dark-mode') {
+            console.log(toggle);
+            setIsDark(!toggle)
+        }
+        
     }
 
     return (<>

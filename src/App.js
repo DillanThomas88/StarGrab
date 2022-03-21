@@ -15,20 +15,20 @@ import SettingsModal from './components/modals/settings-modal';
 function App() {
 
   let userObj = { highScore: 0, darkMode: true }
-  const [playerData, setPlayerData] =  useState(
+  const [playerData, setPlayerData] = useState(
     localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
       : localStorage.setItem('user', JSON.stringify(userObj))
   )
   const [isDark, setIsDark] = useState(() => {
-    if(!playerData) return false
+    if (!playerData) return false
     else return playerData.darkMode
   })
   const [isSettingsActive, setSettingsActive] = useState(false)
   const [animation, setStyle] = useState('animate-slideUp')
   // console.log(playerData.highScore);
   const [highScore, setHighScore] = useState(() => {
-    if(!playerData) return 0
+    if (!playerData) return 0
     else return playerData.highScore
   })
   const [isModalActive, setModalActive] = useState(() => {
@@ -57,7 +57,10 @@ function App() {
       localStorage.setItem('user', JSON.stringify(playerData))
       setStarColor(getColor())
     }
-  }, [highScore, starColor])
+    // console.log(playerData.darkMode, isDark);
+    playerData.darkMode = isDark
+    localStorage.setItem('user', JSON.stringify(playerData))
+  }, [highScore, starColor, isDark])
 
 
   const modalFunction = (e) => {
@@ -98,45 +101,50 @@ function App() {
   useEffect(() => {
     document.title = 'Star Grab | downtogame.com'
   }, [])
+  console.log(isDark);
 
   return (
-    <div style={{ height: window.innerHeight }} className=" font-default bg-neutral-900 select-none  text-neutral-100 overflow-y-scroll lg:overflow-y-hidden">
-      {isModalActive && <StarterModal modalFunction={modalFunction} animation={animation} />}
-      {isSettingsActive && <SettingsModal modalFunction={modalFunction} animation={animation} isDark={isDark} />}
-      <header className="App-header w-full z-50  py-4 flex justify-between px-6">
-        {/* <Header /> */}
-        <button onClick={(e) => modalFunction(e)}
-          className='modal question cursor-pointer'>
-          <Icon data={{ desc: 'question' }} type={'text-neutral-600 pointer-events-none'} />
-        </button>
-        <div className=' text-center text-3xl uppercase flex justify-center items-center'>
-          Star
-          <div className='relative w-14 h-14 '>
-            <div className='absolute grid content-center w-full h-full justify-center text-sm pt-1 font-medium text-neutral-900'>{highScore > 0 && highScore}</div>
-            <Icon data={{ desc: 'small' }} type={starColor} />
+    <div className={isDark && 'bg-neutral-900'}>
+
+
+      <div style={{ height: window.innerHeight }} className={` font-default  select-none  text-neutral-100 overflow-y-scroll lg:overflow-y-hidden`}>
+        {isModalActive && <StarterModal modalFunction={modalFunction} animation={animation} />}
+        {isSettingsActive && <SettingsModal modalFunction={modalFunction} animation={animation} isDark={isDark} setIsDark={setIsDark} />}
+        <header className="App-header w-full z-50  py-4 flex justify-between px-6">
+          {/* <Header /> */}
+          <button onClick={(e) => modalFunction(e)}
+            className='modal question cursor-pointer'>
+            <Icon data={{ desc: 'question' }} type={'text-neutral-600 pointer-events-none'} />
+          </button>
+          <div className=' text-center text-3xl uppercase flex justify-center items-center'>
+            Star
+            <div className='relative w-14 h-14 '>
+              <div className='absolute grid content-center w-full h-full justify-center text-sm pt-1 font-medium text-neutral-900'>{highScore > 0 && highScore}</div>
+              <Icon data={{ desc: 'small' }} type={starColor} />
+            </div>
+            Grab
           </div>
-          Grab
-        </div>
-        <button onClick={(e) => modalFunction(e)}
-          className='modal settings pointer-cursor'>
-          <Icon data={{ desc: 'menu' }} type={'text-neutral-600 pointer-events-none'} />
-        </button>
-      </header>
-      <main className="relative grid content-start lg:content-center lg:h-full lg:pb-10">
+          <button onClick={(e) => modalFunction(e)}
+            className='modal settings pointer-cursor'>
+            <Icon data={{ desc: 'menu' }} type={'text-neutral-600 pointer-events-none'} />
+          </button>
+        </header>
+        <main className="relative grid content-start lg:content-center lg:h-full lg:pb-10">
 
 
-        {/* <div className='font-thin text-sm text-center mb-4'>Collect stars before the timer reaches zero!</div> */}
-        <Main setHighScore={setHighScore} highScore={highScore} />
+          {/* <div className='font-thin text-sm text-center mb-4'>Collect stars before the timer reaches zero!</div> */}
+          <Main setHighScore={setHighScore} highScore={highScore} />
 
-        {/* <PlayerCards /> */}
+          {/* <PlayerCards /> */}
 
 
-      </main>
+        </main>
 
-      <footer>
-        {/* <Footer /> */}
-      </footer>
+        <footer>
+          {/* <Footer /> */}
+        </footer>
 
+      </div>
     </div>
   );
 

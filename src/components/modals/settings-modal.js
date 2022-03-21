@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from '../icons';
 import Toggle from '../tools/toggle/toggle';
 
 
-function SettingsModal({ modalFunction, isDark, animation, data }) {
+function SettingsModal({ modalFunction, isDark, animation, data, setIsDark }) {
+    console.log(isDark);
 
+    const getStyle = () => {
+        if(isDark) return 'bg-neutral-900'
+        else return 'bg-white'
+    }
+    const [style,setstyle] = useState(getStyle())
+
+    useEffect(()=> {
+        setstyle(getStyle)
+    },[isDark])
 
     return (
-        <>
-            <div className='fixed animate-fadeIn w-full px-4 h-full z-50 flex justify-center items-center'>
-                <div className={`flex flex-col question-modal ${animation} relative justify-start items-center w-full rounded-md border border-neutral-600 h-fit pb-5 bg-neutral-900 shadow-md shadow-black text-xs px-4`}>
+        <div>
+            <div className={`fixed ${style}  animate-fadeIn w-full px-4 h-full z-50 flex justify-center items-center`}>
+                <div className={`flex flex-col question-modal ${animation} relative justify-start items-center w-full rounded-md border border-neutral-600 h-fit pb-5 shadow-md shadow-black text-xs px-4`}>
                     <button onClick={modalFunction} className='w-6 h-6 absolute right-2 top-2 cursor-pointer'>
                         <Icon data={{ desc: 'close' }} />
                     </button>
 
-                    <header className='mt-6 mb-2 w-full flex justify-center items-center uppercase font-normal text-2xl text-neutral-100 rounded-t-sm '>
+                    <header className='mt-6 mb-2 w-full flex justify-center items-center uppercase font-normal text-2xl  rounded-t-sm '>
                         Settings
                     </header>
                     <div className='w-full flex justify-between items-center'>
@@ -26,7 +36,7 @@ function SettingsModal({ modalFunction, isDark, animation, data }) {
                     <div className='flex flex-col justify-center w-full text-xl font-normal'>
                         <div className=' flex justify-between w-full'>
                             <div >Dark Theme</div>
-                            <Toggle isDark={isDark} data={'dark-mode'} />
+                            <Toggle isDark={isDark} data={'dark-mode'} setIsDark={setIsDark} />
                         </div>
                         <div className='flex justify-center w-full items-center border-b opacity-20 my-2'></div>
 
@@ -42,7 +52,7 @@ function SettingsModal({ modalFunction, isDark, animation, data }) {
                 <div className='fixed w-full h-full bg-black opacity-50 -z-10'></div>
 
             </div>
-        </>
+        </div>
     )
 
 }
