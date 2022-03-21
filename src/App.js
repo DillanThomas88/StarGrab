@@ -14,24 +14,34 @@ import SettingsModal from './components/modals/settings-modal';
 
 function App() {
 
-
-  const [isDark, setIsDark] = useState(true)
-  const [isModalActive, setModalActive] = useState(() => {
-    if (parseInt(localStorage.getItem('user')) !== 0) {
-      return false
-    } else return true
+  let userObj = { highScore: 0, darkMode: true }
+  const [playerData, setPlayerData] =  useState(
+    localStorage.getItem('user')
+      ? JSON.parse(localStorage.getItem('user'))
+      : localStorage.setItem('user', JSON.stringify(userObj))
+  )
+  const [isDark, setIsDark] = useState(() => {
+    if(!playerData) return false
+    else return playerData.darkMode
   })
   const [isSettingsActive, setSettingsActive] = useState(false)
   const [animation, setStyle] = useState('animate-slideUp')
-  const [highScore, setHighScore] = useState(
-    localStorage.getItem('user')
-      ? localStorage.getItem('user')
-      : localStorage.setItem('user', 0)
-  )
+  // console.log(playerData.highScore);
+  const [highScore, setHighScore] = useState(() => {
+    if(!playerData) return 0
+    else return playerData.highScore
+  })
+  const [isModalActive, setModalActive] = useState(() => {
+    if (highScore !== 0) {
+      return false
+    } else return true
+  })
+
+  // console.log(playerData);
 
 
   const getColor = () => {
-    let x = parseInt(highScore)
+    let x = highScore
     if (x < 50) return 'text-white'
     else if (x >= 50 && x < 75) return 'text-green-500'
     else if (x >= 75 && x < 100) return 'text-yellow-300'
@@ -42,9 +52,9 @@ function App() {
   }
   const [starColor, setStarColor] = useState(getColor())
   useEffect(() => {
-    if (highScore > localStorage.getItem('user')) {
-
-      localStorage.setItem('user', highScore)
+    if (highScore > playerData.highScore) {
+      playerData.highScore = highScore
+      localStorage.setItem('user', JSON.stringify(playerData))
       setStarColor(getColor())
     }
   }, [highScore, starColor])
@@ -54,10 +64,10 @@ function App() {
 
     const el = e.target
 
-    if(el.classList.contains('modal')){
-      if(el.classList.contains('question')){
+    if (el.classList.contains('modal')) {
+      if (el.classList.contains('question')) {
         return setModalActive(!isModalActive)
-      } else if (el.classList.contains('settings')){
+      } else if (el.classList.contains('settings')) {
         // console.log('settings');
         return setSettingsActive(!isSettingsActive)
       } else {
@@ -78,7 +88,7 @@ function App() {
     ]
 
     array.forEach(element => {
-      if(element.state === true){
+      if (element.state === true) {
         element.function(false)
         return
       }
@@ -92,7 +102,7 @@ function App() {
   return (
     <div style={{ height: window.innerHeight }} className=" font-default bg-neutral-900 select-none  text-neutral-100 overflow-y-scroll lg:overflow-y-hidden">
       {isModalActive && <StarterModal modalFunction={modalFunction} animation={animation} />}
-      {isSettingsActive && <SettingsModal modalFunction={modalFunction} animation={animation} isDark={isDark}  />}
+      {isSettingsActive && <SettingsModal modalFunction={modalFunction} animation={animation} isDark={isDark} />}
       <header className="App-header w-full z-50  py-4 flex justify-between px-6">
         {/* <Header /> */}
         <button onClick={(e) => modalFunction(e)}

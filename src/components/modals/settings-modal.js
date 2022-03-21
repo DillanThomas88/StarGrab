@@ -3,7 +3,7 @@ import Icon from '../icons';
 import Toggle from '../tools/toggle/toggle';
 
 
-function SettingsModal({ modalFunction, isDark, animation }) {
+function SettingsModal({ modalFunction, isDark, animation, data }) {
 
 
     return (
@@ -20,16 +20,22 @@ function SettingsModal({ modalFunction, isDark, animation }) {
                     <div className='w-full flex justify-between items-center'>
                         {/* <div className='border-b w-full opacity-40'></div> */}
                     </div>
-                    <div className='flex justify-center w-full items-center border-b opacity-20 mb-2'></div>
+                    <div className='flex justify-center w-full items-center border-b mb-4'></div>
 
-                    <div className='flex justify-center w-full'>
+                    {/* toggles */}
+                    <div className='flex flex-col justify-center w-full text-xl font-normal'>
+                        <div className=' flex justify-between w-full'>
+                            <div >Dark Theme</div>
+                            <Toggle isDark={isDark} data={'dark-mode'} />
+                        </div>
+                        <div className='flex justify-center w-full items-center border-b opacity-20 my-2'></div>
 
-                        <div className='mt-2 flex justify-between w-full'>
-                            <div className='uppercase'>Dark Mode</div>
+                        <div className='flex justify-between w-full'>
+                            <div >Hard Mode</div>
                             <Toggle isDark={isDark} />
                         </div>
-
                     </div>
+
 
 
                 </div>
