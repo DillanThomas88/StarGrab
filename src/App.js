@@ -14,7 +14,7 @@ import SettingsModal from './components/modals/settings-modal';
 
 function App() {
 
-  let userObj = { highScore: 0, darkMode: true, totalstars: 0 }
+  let userObj = { highScore: 0, darkMode: false, totalstars: 0 }
   let styleObj = {
     light: {
       icon: 'text-neutral-800',
