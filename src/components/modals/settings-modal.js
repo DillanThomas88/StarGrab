@@ -45,15 +45,19 @@ function SettingsModal({ modalFunction, isDark, animation, data, setIsDark, play
                         </div>
                         <div className='flex justify-center w-full items-center border-b border-neutral-500 opacity-20 my-2'></div>
                         <div className='w-full text-sm pt-1 '>
-                            <div className='flex justify-end items-center text-neutral-500 '>
-                                <div className='w-5 h-5 flex items-center justify-center pt-1 mr-2 '>
+                            <div className='flex justify-center items-center '>
+                                <div className='w-4 h-4 flex items-center justify-center '>
 
-                                    <Icon data={{ desc: 'score' }} type={' text-neutral-500 animate-swivel'} />
-                                </div> 
-                                
-                                <div className=' text-sm'>
+                                    <Icon data={{ desc: 'score' }} type={' text-neutral-500 '} />
+                                </div>
 
-                                {playerData.totalstars.toLocaleString()}
+                                <div className=' text-sm text-neutral-500 mx-5'>
+
+                                    {playerData.totalstars.toLocaleString()}
+                                </div>
+                                <div className='w-4 h-4 flex items-center justify-center '>
+
+                                    <Icon data={{ desc: 'score' }} type={' text-neutral-500'} />
                                 </div>
                             </div>
                         </div>

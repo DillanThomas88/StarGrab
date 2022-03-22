@@ -41,7 +41,7 @@ function Icon({ type, data }) {
             classes = `absolute h-full w-full animate-clockwise opacity-10 text-neutral-700 grid content-center justify-center pointer-events-none`
             break;
         case 'score':
-            classes = `h-conent w-content pb-1 ${type}`
+            classes = `h-full w-full ${type}`
             break;
         case 'notequal':
             classes = `h-content w-content  ${type}`
@@ -58,12 +58,12 @@ function Icon({ type, data }) {
         case 'question':
             classes = `h-content w-content  ${type}`
             break;
-            case 'close':
-                classes = `h-content w-content  ${type}`
-                break;
-                case 'menu':
-                    classes = `h-content w-content  ${type}`
-                    break;
+        case 'close':
+            classes = `h-content w-content  ${type}`
+            break;
+        case 'menu':
+            classes = `h-content w-content  ${type}`
+            break;
 
 
 
