@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Icon from '../icons';
 
-function ScoreDisplay({ score }) {
+function ScoreDisplay({ score, isDark }) {
 
     const [count, setCount] = useState(score)
     const [style, setStyle] = useState('')
@@ -47,12 +47,12 @@ function ScoreDisplay({ score }) {
     return (<>
         <div className='flex justify-between items-center text-xl text-center font-normal px-2 py-1'>
             <div>
-                <Icon data={{ desc: 'small' }} type={'w-7 h-7'}/>
+                <Icon data={{ desc: 'small' }} type={'w-7 h-7 text-neutral-500'}/>
             </div>
             <div className='text-center w-5'>=</div>
             <div className={style}>
 
-                <div className=' w-8 text-white text-center'>{count}</div>
+                <div className=' w-8 text-neutral-500 text-center'>{count}</div>
             </div>
         </div>
     </>)

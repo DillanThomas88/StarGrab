@@ -15,8 +15,8 @@ function DemoTiles({ index }) {
             case 2:
                 return {
                     bg: 'bg-gradient-to-tr from-amber-500 to-amber-400',
-                    text: 'text-yellow-300',
-                    border: 'border-yellow-300'
+                    text: 'text-amber-500',
+                    border: 'border-amber-500'
                 }
                 break;
             case 3:

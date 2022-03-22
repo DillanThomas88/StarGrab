@@ -4,22 +4,21 @@ import Toggle from '../tools/toggle/toggle';
 
 
 function SettingsModal({ modalFunction, isDark, animation, data, setIsDark }) {
-    console.log(isDark);
 
     const getStyle = () => {
         if(isDark) return 'bg-neutral-900'
-        else return 'bg-white'
+        else return 'bg-white text-neutral-900'
     }
     const [style,setstyle] = useState(getStyle())
 
     useEffect(()=> {
-        setstyle(getStyle)
+        setstyle(getStyle())
     },[isDark])
 
     return (
         <div>
-            <div className={`fixed ${style}  animate-fadeIn w-full px-4 h-full z-50 flex justify-center items-center`}>
-                <div className={`flex flex-col question-modal ${animation} relative justify-start items-center w-full rounded-md border border-neutral-600 h-fit pb-5 shadow-md shadow-black text-xs px-4`}>
+            <div className={`fixed animate-fadeIn w-full px-4 h-full z-50 flex justify-center items-center`}>
+                <div className={`flex ${style}  flex-col question-modal ${animation} relative justify-start items-center w-full rounded-md border border-neutral-500 h-fit pb-5 shadow-md shadow-black text-xs px-4`}>
                     <button onClick={modalFunction} className='w-6 h-6 absolute right-2 top-2 cursor-pointer'>
                         <Icon data={{ desc: 'close' }} />
                     </button>
@@ -30,7 +29,7 @@ function SettingsModal({ modalFunction, isDark, animation, data, setIsDark }) {
                     <div className='w-full flex justify-between items-center'>
                         {/* <div className='border-b w-full opacity-40'></div> */}
                     </div>
-                    <div className='flex justify-center w-full items-center border-b mb-4'></div>
+                    <div className='flex justify-center w-full items-center border-b border-neutral-500 mb-4'></div>
 
                     {/* toggles */}
                     <div className='flex flex-col justify-center w-full text-xl font-normal'>
@@ -38,7 +37,7 @@ function SettingsModal({ modalFunction, isDark, animation, data, setIsDark }) {
                             <div >Dark Theme</div>
                             <Toggle isDark={isDark} data={'dark-mode'} setIsDark={setIsDark} />
                         </div>
-                        <div className='flex justify-center w-full items-center border-b opacity-20 my-2'></div>
+                        <div className='flex justify-center w-full items-center border-b border-neutral-500 opacity-20 my-2'></div>
 
                         <div className='flex justify-between w-full'>
                             <div >Hard Mode</div>
