@@ -14,7 +14,7 @@ import SettingsModal from './components/modals/settings-modal';
 
 function App() {
 
-  let userObj = { highScore: 0, darkMode: true }
+  let userObj = { highScore: 0, darkMode: true, totalstars: 0 }
   let styleObj = {
     light: {
       icon: 'text-neutral-800',
@@ -80,9 +80,12 @@ function App() {
       setStarColor(getColor())
     }
     // console.log(playerData.darkMode, isDark);
+    if(!playerData.totalstars){
+      playerData.totalstars = playerData.highScore
+    }
     playerData.darkMode = isDark
     localStorage.setItem('user', JSON.stringify(playerData))
-  }, [highScore, starColor, isDark])
+  }, [highScore, starColor, isDark, playerData])
 
 
 
@@ -132,7 +135,7 @@ function App() {
 
       <div style={{ height: window.innerHeight }} className={` font-default  select-none overflow-y-scroll lg:overflow-y-hidden`}>
         {isModalActive && <StarterModal modalFunction={modalFunction} animation={animation} isDark={isDark} css={isDark ? styleObj.dark.style : styleObj.light.style}  />}
-        {isSettingsActive && <SettingsModal modalFunction={modalFunction} animation={animation} isDark={isDark} setIsDark={setIsDark} />}
+        {isSettingsActive && <SettingsModal modalFunction={modalFunction} animation={animation} isDark={isDark} setIsDark={setIsDark} playerData={playerData} />}
         <header className="App-header w-full z-50  py-4 flex justify-between px-6">
           {/* <Header /> */}
           <button onClick={(e) => modalFunction(e)}
@@ -161,7 +164,7 @@ function App() {
 
 
           {/* <div className='font-thin text-sm text-center mb-4'>Collect stars before the timer reaches zero!</div> */}
-          <Main setHighScore={setHighScore} highScore={highScore} isDark={isDark} css={isDark ? styleObj.dark.style : styleObj.light.style}  />
+          <Main setHighScore={setHighScore} highScore={highScore} isDark={isDark} css={isDark ? styleObj.dark.style : styleObj.light.style} setPlayerData={setPlayerData}  />
 
           {/* <PlayerCards /> */}
 

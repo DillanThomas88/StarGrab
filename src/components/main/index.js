@@ -5,13 +5,11 @@ import Player from '../playercards/player'
 import Timer from './timer-display'
 import ScoreDisplay from './score-display'
 
-function Main({setHighScore, highScore, isDark, css}) {
+function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
 
     const gridSize = 5
     const rows = 'grid-rows-5'
     const cols = 'grid-cols-5'
-
-
     const board = () => {
         let board = []
         for (let i = 0; i < gridSize; i++) {
@@ -96,6 +94,12 @@ function Main({setHighScore, highScore, isDark, css}) {
     }
 
     const handleLocalStorage = () => {
+        console.log('object');
+        setPlayerData(prevState => {
+            return {
+                ...prevState, totalstars: prevState.totalstars += collection
+            }
+        })
         if(collection > highScore){
 
             setHighScore(collection)

@@ -13,8 +13,8 @@ function Toggle({ isDark, data, setIsDark }) {
         setToggle(!toggle)
         if(data === 'dark-mode') {
             console.log(toggle);
-            window.location.reload();
             setIsDark(!toggle)
+            window.location.reload();
         }
         
     }
