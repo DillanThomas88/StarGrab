@@ -48,7 +48,7 @@ function SettingsModal({ modalFunction, isDark, animation, data, setIsDark, play
                             <div className='flex justify-end items-center text-neutral-500 '>
                                 <div className='w-5 h-5 flex items-center justify-center pt-1 mr-2 '>
 
-                                    <Icon data={{ desc: 'score' }} type={' animate-swivel'} />
+                                    <Icon data={{ desc: 'score' }} type={' text-neutral-500 animate-swivel'} />
                                 </div> 
                                 
                                 <div className=' text-sm'>
