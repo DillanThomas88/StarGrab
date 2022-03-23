@@ -434,18 +434,18 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                 </div>
             </div>
 
-            <div className='py-1 font-semibold'>
+            <div className='pt-1 font-semibold'>
                 {HandleCounter()}
             </div>
 
-            <div className='text-white grid content-center gap-y-4'>
+            <div className='text-white grid content-center gap-y-1'>
                 <button onClick={(e) => handleSuper(e)} 
                 disabled={superBtn}
-                className={!superBtn ? 'bg-blue-500 animate-pulse uppercase h-12 flex justify-center items-center rounded-lg font-semibold ' : ' opacity-40 scale-90 bg-neutral-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold '}>
+                className={!superBtn ? 'bg-blue-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold ' : ' opacity-40 scale-90 bg-neutral-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold '}>
                     <div className={isDark ? 'text-neutral-900 pointer-events-none' : 'text-white pointer-events-none'  }>Super</div>
                 </button>
                 <div className='w-full uppercase text-neutral-500 flex justify-center flex justify-center items-center'>
-                <button 
+                <button onClick={() => window.location.reload()}
                 className='uppercase relative w-20 h-20 flex justify-center items-center  rounded-md'>
                     <Icon data={{desc: 'restart'}} type={'h-full w-full fill-neutral-500 pointer-events-none'} />
                     <div className='absolute flex justify-center items-center text-xs pt-2 pointer-events-none'>New</div>
