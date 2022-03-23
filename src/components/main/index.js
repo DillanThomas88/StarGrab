@@ -5,7 +5,7 @@ import Player from '../playercards/player'
 import Timer from './timer-display'
 import ScoreDisplay from './score-display'
 
-function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
+function Main({ setHighScore, highScore, isDark, css, setPlayerData }) {
 
     const gridSize = 5
     const rows = 'grid-rows-5'
@@ -19,6 +19,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
         }
         return board
     }
+    const [hasStarted, setHasStarted] = useState(false)
     const [tiles, settiles] = useState(board())
     const [timer, setTimer] = useState('pause')
     const [collection, setCollection] = useState(0)
@@ -26,11 +27,11 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
         randomNum: Math.floor(Math.random() * 15) + 10,
         total: 0
     })
-    const [superBtn,setSuperBtn] = useState(true)
+    const [superBtn, setSuperBtn] = useState(true)
     const [isDisabled, setIsDisabled] = useState(true)
     useEffect(() => {
         settiles(tiles)
-    },[isDark])
+    }, [isDark])
 
 
     const getColors = (type) => {
@@ -101,7 +102,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                 ...prevState, totalstars: prevState.totalstars += collection
             }
         })
-        if(collection > highScore){
+        if (collection > highScore) {
 
             setHighScore(collection)
         }
@@ -169,6 +170,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
         </>
         )
     }
+
 
     const handleSelected = (e) => {
         const tile = e.target
@@ -278,6 +280,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
 
         let t = setInterval(() => {
             clearInterval(t)
+            setHasStarted(true)
             setSuperBtn(false)
             setIsDisabled(false)
             setTimer('start')
@@ -356,13 +359,13 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                 x.children[0].classList.toggle('text-neutral-700')
                 x.children[0].classList.toggle('text-neutral-900')
                 x.children[1].classList.toggle(colors.text)
-                if(isDark){
+                if (isDark) {
                     x.children[1].classList.toggle('text-neutral-900')
                 } else {
                     x.children[1].classList.toggle('text-white')
                 }
             } else {
-                if(isDark){
+                if (isDark) {
                     x.classList.toggle('text-neutral-900')
                 } else {
                     x.classList.toggle('text-white')
@@ -386,14 +389,14 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                 x.classList.toggle(colors.text)
                 x.children[0].classList.toggle('text-neutral-900')
                 x.children[0].classList.toggle('text-neutral-700')
-                if(isDark){
+                if (isDark) {
                     x.children[1].classList.toggle('text-neutral-900')
                 } else {
                     x.children[1].classList.toggle('text-white')
                 }
                 x.children[1].classList.toggle(colors.text)
             } else {
-                if(isDark){
+                if (isDark) {
                     x.classList.toggle('text-neutral-900')
                 } else {
                     x.classList.toggle('text-white')
@@ -404,8 +407,9 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
 
 
     function handleSuper(e) {
-        if(superBtn === false){
+        if (superBtn === false) {
             setSuperBtn(true)
+            handleNewCards()
             settiles(board())
         }
     }
@@ -427,12 +431,23 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                 </div>
                 <div className='grid w-full justify-center content-center'>
                     <div onClick={(e) => handleSelected(e)}
-                    disabled={isDisabled}
-                        className={isDisabled ? `cursor-auto opacity-50 select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative` : `cursor-auto select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+                        className={isDisabled ? `pointer-events-none opacity-30 select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative` : `cursor-auto select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
                         {tiles.map((data, index) => {
                             return (<div className='tile' key={index} >{data}</div>)
                         })}
                     </div>
+                    {hasStarted && isDisabled && <>
+                        <div className='absolute animate-fadeInSlow grid content-center justify-center w-full h-full'>
+                            <div className=' uppercase flex justify-center flex justify-center items-center'>
+                                <button onClick={() => window.location.reload()}
+                                    className='uppercase relative w-32 h-32 flex justify-center items-center rounded-md'>
+                                    <Icon data={{ desc: 'restart' }} type={isDark ? 'animate-throb h-full w-full fill-white pointer-events-none' : 'animate-throb h-full w-full fill-neutral-700 pointer-events-none'} />
+                                    <div className={isDark ? ' text-white absolute  flex justify-center items-center text-xs font-medium pt-2 pointer-events-none' : 'absolute flex justify-center items-center text-xs font-medium pt-2 pointer-events-none'}>Play<br></br> again</div>
+                                </button>
+                            </div>
+                        </div>
+                    </>}
+
                 </div>
             </div>
 
@@ -440,19 +455,20 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                 {HandleCounter()}
             </div>
 
-            <div className='text-white grid content-center gap-y-1'>
-                <button onClick={(e) => handleSuper(e)} 
-                disabled={superBtn}
-                className={!superBtn ? ' border-4 border-blue-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold ' : 'opacity-50 bg-transparent border-2 border-nuetral-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold '}>
-                    <div className={isDark ? 'text-whitepointer-events-none' : 'text-neutral-900 pointer-events-none'  }>Super</div>
-                </button>
-                <div className='w-full uppercase text-neutral-500 flex justify-center flex justify-center items-center'>
-                <button onClick={() => window.location.reload()}
-                className='uppercase relative w-20 h-20 flex justify-center items-center  rounded-md'>
-                    <Icon data={{desc: 'restart'}} type={'h-full w-full fill-neutral-500 pointer-events-none'} />
-                    <div className='absolute flex justify-center items-center text-xs pt-2 pointer-events-none'>New</div>
-                </button>
+            <div className='text-white flex justify-center items-center mt-2 text-2xl'>
+
+                <div onClick={(e) => handleSuper(e)}
+                    className={superBtn ? 'w-24 uppercase h-14 flex justify-center items-center rounded-lg font-semibold opacity-0' : 'animate-fadeInSlow bg-transparent uppercase w-14 h-14 flex justify-center items-center rounded-lg font-semibold '}>
+                    <div className='flex justify-center items-center'>
+                        <div className={isDark ? 'w-1 h-1 animate-throb bg-neutral-100 rounded-full' :'w-1 h-1 animate-throb bg-neutral-600 rounded-full'}></div>
+                        <div className={isDark ? 'w-2 h-2 animate-throb bg-neutral-100 rounded-full mx-2' :'w-2 h-2 animate-throb bg-neutral-600 rounded-full mx-2'}></div>
+                        <div className={isDark ? 'text-white pointer-events-none' : 'text-neutral-700 pointer-events-none'}>Super</div>
+                        <div className={isDark ? 'w-2 h-2 animate-throb bg-neutral-100 rounded-full mx-2' :'w-2 h-2 animate-throb bg-neutral-600 rounded-full mx-2'}></div>
+                        <div className={isDark ? 'w-1 h-1 animate-throb bg-neutral-100 rounded-full' :'w-1 h-1 animate-throb bg-neutral-600 rounded-full'}></div>
+
+                    </div>
                 </div>
+
 
             </div>
 

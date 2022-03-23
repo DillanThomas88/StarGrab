@@ -65,12 +65,12 @@ function App() {
   const getColor = () => {
     let x = highScore
     if (x < 50) return styles.icon
-    else if (x >= 50 && x < 75) return 'text-green-500'
-    else if (x >= 75 && x < 100) return 'text-amber-500'
-    else if (x >= 100 && x < 150) return 'text-indigo-400'
-    else if (x >= 150 && x < 200) return 'text-red-500'
-    else if (x >= 200 && x < 250) return 'text-rose-500'
-    else return 'text-pink-500'
+    else if (x >= 50 && x < 75) return 'text-yellow-500'
+    else if (x >= 75 && x < 100) return 'text-green-500'
+    else if (x >= 100 && x < 150) return 'text-teal-400'
+    else if (x >= 150 && x < 200) return 'text-sky-500'
+    else if (x >= 200 && x < 250) return 'text-fuchsia-500'
+    else return 'text-rose-500'
   }
   const [starColor, setStarColor] = useState(getColor())
   useEffect(() => {
