@@ -27,7 +27,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
         total: 0
     })
     const [superBtn,setSuperBtn] = useState(true)
-
+    const [isDisabled, setIsDisabled] = useState(true)
     useEffect(() => {
         settiles(tiles)
     },[isDark])
@@ -142,13 +142,13 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                 <div className='flex justify-between my-4'>
 
                     <div className='text-neutral-500 flex flex-col justify-start items-center '>
-                        <Timer data={{ timer, handletimerReset }} handleLocalStorage={handleLocalStorage} handleFoldingAnimations={handleFoldingAnimations} isDark={isDark} />
+                        <Timer data={{ timer, handletimerReset }} setIsDisabled={setIsDisabled} handleLocalStorage={handleLocalStorage} handleFoldingAnimations={handleFoldingAnimations} isDark={isDark} />
 
                     </div>
                     <div className='relative w-20'>
 
                         <button onClick={handleNewCards}
-                            disabled={tally !== state.randomNum ? true : false}
+                            disabled={isDisabled ? true : tally !== state.randomNum ? true : false}
                             className={isDark ? `absolute z-40 w-full h-full flex flex-col rounded-lg flex justify-start items-center bg-white text-neutral-900 mb-1` : `absolute z-40 w-full h-full flex flex-col rounded-lg flex justify-start items-center bg-neutral-800 text-white mb-1`}>
                             <div className='border-b border-neutral-500 text-sm'>{tally}</div>
 
@@ -279,6 +279,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
         let t = setInterval(() => {
             clearInterval(t)
             setSuperBtn(false)
+            setIsDisabled(false)
             setTimer('start')
         }, 1500);
 
@@ -425,12 +426,13 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                     </div>
                 </div>
                 <div className='grid w-full justify-center content-center'>
-                    <div onClick={(e) => handleSelected(e)}
-                        className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+                    <button onClick={(e) => handleSelected(e)}
+                    disabled={isDisabled}
+                        className={isDisabled ? ` opacity-50 select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative` : ` select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
                         {tiles.map((data, index) => {
                             return (<div className='tile' key={index} >{data}</div>)
                         })}
-                    </div>
+                    </button>
                 </div>
             </div>
 
@@ -441,8 +443,8 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
             <div className='text-white grid content-center gap-y-1'>
                 <button onClick={(e) => handleSuper(e)} 
                 disabled={superBtn}
-                className={!superBtn ? 'bg-blue-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold ' : ' opacity-40 scale-90 bg-neutral-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold '}>
-                    <div className={isDark ? 'text-neutral-900 pointer-events-none' : 'text-white pointer-events-none'  }>Super</div>
+                className={!superBtn ? ' border-4 border-blue-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold ' : 'opacity-50 bg-transparent border-2 border-nuetral-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold '}>
+                    <div className={isDark ? 'text-whitepointer-events-none' : 'text-neutral-900 pointer-events-none'  }>Super</div>
                 </button>
                 <div className='w-full uppercase text-neutral-500 flex justify-center flex justify-center items-center'>
                 <button onClick={() => window.location.reload()}

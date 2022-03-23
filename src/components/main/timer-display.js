@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from '../icons';
 
-const Timer = ({ data, handleFoldingAnimations, handleLocalStorage, isDark }) => {
+const Timer = ({ data, handleFoldingAnimations, handleLocalStorage, isDark, setIsDisabled }) => {
 
 
     let timerLength = 120
@@ -98,6 +98,7 @@ const Timer = ({ data, handleFoldingAnimations, handleLocalStorage, isDark }) =>
                         data.handletimerReset()
                         // handleFoldingAnimations('end')
                         handleLocalStorage()
+                        setIsDisabled(true)
                         toggle()
                         reset()
                     } else {

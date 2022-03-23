@@ -8,6 +8,7 @@ function Tile({ index , css, isDark}) {
     let chance = 25
 
 
+
     const getColors = () => {
         switch (type) {
             case 1:
