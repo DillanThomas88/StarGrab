@@ -14,6 +14,7 @@ import { ReactComponent as UnlockSVG } from './ui/unlock.svg'
 import { ReactComponent as QuestionSVG } from './ui/question.svg'
 import { ReactComponent as CloseSVG } from './ui/close.svg'
 import { ReactComponent as MenuSVG } from './ui/menu.svg'
+import { ReactComponent as RestartSVG } from './ui/restart.svg'
 
 function Icon({ type, data }) {
 
@@ -64,6 +65,9 @@ function Icon({ type, data }) {
         case 'menu':
             classes = `h-content w-content  ${type}`
             break;
+        case 'restart':
+            classes = `h-content w-content  ${type}`
+            break;
 
 
 
@@ -86,6 +90,7 @@ function Icon({ type, data }) {
         question: <QuestionSVG className={classes} />,
         close: <CloseSVG className={classes} />,
         menu: <MenuSVG className={classes} />,
+        restart: <RestartSVG className={classes} />,
     }
     return library[data.desc]
 }

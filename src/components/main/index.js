@@ -26,6 +26,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
         randomNum: Math.floor(Math.random() * 15) + 10,
         total: 0
     })
+    const [superBtn,setSuperBtn] = useState(true)
 
     useEffect(() => {
         settiles(tiles)
@@ -277,6 +278,7 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
 
         let t = setInterval(() => {
             clearInterval(t)
+            setSuperBtn(false)
             setTimer('start')
         }, 1500);
 
@@ -327,41 +329,6 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
         staggerRows(rows, i)
 
     }
-
-
-    return (
-        <div className="grid content-center justify-center w-screen">
-
-            <div className='relative'>
-                <div onClick={() => handleFoldingAnimations()}
-                    className='board z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
-
-                    <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
-                        <div className='animate-pulse z-50 '>Touch Screen to start</div>
-                        {/* <div className='w-full h-14 flex justify-center'>
-                            <Icon data={{ desc: 'lock' }} />
-                        </div> */}
-
-                    </div>
-                </div>
-                <div className='grid w-full justify-center content-center'>
-                    <div onClick={(e) => handleSelected(e)}
-                        className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
-                        {tiles.map((data, index) => {
-                            return (<div className='tile' key={index} >{data}</div>)
-                        })}
-                    </div>
-                </div>
-            </div>
-
-            <div className='py-1 font-semibold'>
-                {HandleCounter()}
-            </div>
-
-
-
-        </div>
-    )
 
     function applyremoveStyle(tile, z) {
         // console.log(tile);
@@ -433,6 +400,66 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
             }
         }
     }
+
+
+    function handleSuper(e) {
+        if(superBtn === false){
+            setSuperBtn(true)
+            settiles(board())
+        }
+    }
+
+    return (
+        <div className="grid content-center justify-center w-screen">
+
+            <div className='relative'>
+                <div onClick={() => handleFoldingAnimations()}
+                    className='board z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
+
+                    <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
+                        <div className='animate-pulse z-50 '>Touch Screen to start</div>
+                        {/* <div className='w-full h-14 flex justify-center'>
+                            <Icon data={{ desc: 'lock' }} />
+                        </div> */}
+
+                    </div>
+                </div>
+                <div className='grid w-full justify-center content-center'>
+                    <div onClick={(e) => handleSelected(e)}
+                        className={`the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+                        {tiles.map((data, index) => {
+                            return (<div className='tile' key={index} >{data}</div>)
+                        })}
+                    </div>
+                </div>
+            </div>
+
+            <div className='py-1 font-semibold'>
+                {HandleCounter()}
+            </div>
+
+            <div className='text-white grid content-center gap-y-4'>
+                <button onClick={(e) => handleSuper(e)} 
+                disabled={superBtn}
+                className={!superBtn ? 'bg-blue-500 animate-pulse uppercase h-12 flex justify-center items-center rounded-lg font-semibold ' : ' opacity-40 scale-90 bg-neutral-500 uppercase h-12 flex justify-center items-center rounded-lg font-semibold '}>
+                    <div className={isDark ? 'text-neutral-900 pointer-events-none' : 'text-white pointer-events-none'  }>Super</div>
+                </button>
+                <div className='w-full uppercase text-neutral-500 flex justify-center flex justify-center items-center'>
+                <button 
+                className='uppercase relative w-20 h-20 flex justify-center items-center  rounded-md'>
+                    <Icon data={{desc: 'restart'}} type={'h-full w-full fill-neutral-500 pointer-events-none'} />
+                    <div className='absolute flex justify-center items-center text-xs pt-2 pointer-events-none'>New</div>
+                </button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    )
+
+
 }
 
 export default Main

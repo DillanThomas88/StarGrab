@@ -23,6 +23,7 @@ module.exports = {
         iconClose: 'grab .2s reverse',
         slideUp: 'slide .2s forwards',
         slideDown: 'slide .2s reverse forwards',
+        throb: 'grab .5s alternate infinite'
       },
       keyframes: {
         fade: {
@@ -74,7 +75,7 @@ module.exports = {
         },
         grab: {
           '0%': { transform: 'scale(1)'},
-          '100%': { transform: 'scale(1.5)'},
+          '100%': { transform: 'scale(1.15)'},
         }
 
 
