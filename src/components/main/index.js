@@ -426,14 +426,13 @@ function Main({setHighScore, highScore, isDark, css, setPlayerData}) {
                     </div>
                 </div>
                 <div className='grid w-full justify-center content-center'>
-                    <button onClick={(e) => handleSelected(e)}
+                    <div onClick={(e) => handleSelected(e)}
                     disabled={isDisabled}
-                    style={{highlightColor: 'transparent'}}
-                        className={isDisabled ? ` opacity-50 select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative` : ` select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+                        className={isDisabled ? `cursor-auto opacity-50 select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative` : `cursor-auto select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
                         {tiles.map((data, index) => {
                             return (<div className='tile' key={index} >{data}</div>)
                         })}
-                    </button>
+                    </div>
                 </div>
             </div>
 
