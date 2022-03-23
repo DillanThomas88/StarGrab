@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Icon from '../icons'
 
-function DemoTiles({ index }) {
+function DemoTiles({ index, isDark }) {
 
     const getColors = () => {
         switch (index.type) {
@@ -57,10 +57,10 @@ function DemoTiles({ index }) {
                             </div>
                         </>
                         : <>
-                            <div className={`relative grid content-center justify-center text-center text-neutral-900 h-full`}>
+                            <div className={`relative grid content-center justify-center font-medium text-center text-neutral-900 h-full`}>
                                 <Icon data={{desc: 'detail'}} />
                                 <Icon data={{desc: 'large'}} type={colorObj.text} />
-                                <div className='z-10 pt-1 text-lg'>{index.number}</div>
+                                <div className={isDark ? 'z-10 pt-1 text-lg' : 'z-10 pt-1 text-lg text-white'}>{index.number}</div>
                             </div>
 
                         </>}

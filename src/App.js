@@ -41,7 +41,6 @@ function App() {
     else return playerData.darkMode
   })
 
-  console.log(styles);
 
   const [isSettingsActive, setSettingsActive] = useState(false)
   const [animation, setStyle] = useState('animate-slideUp')
@@ -127,7 +126,6 @@ function App() {
   useEffect(() => {
     document.title = 'Star Grab | downtogame.com'
   }, [])
-  console.log(isDark);
 
   return (
     <div className={isDark ? styleObj.dark.style : styleObj.light.style}>

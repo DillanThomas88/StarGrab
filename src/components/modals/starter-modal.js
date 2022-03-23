@@ -6,7 +6,6 @@ import DemoTiles from '../tile/demo-tiles'
 
 function StarterModal({ modalFunction, animation, css, isDark }) {
 
-console.log(isDark);
 
   const tileArray = [
     {
@@ -119,7 +118,7 @@ console.log(isDark);
 
             <div className='grid grid-rows-3 grid-cols-3 gap-1 mt-2'>
               {tileArray.map((data, index) => {
-                return <DemoTiles index={data} key={index} />
+                return <DemoTiles index={data} key={index} isDark={isDark} />
               })}
             </div>
 

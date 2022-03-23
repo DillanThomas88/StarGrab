@@ -39,9 +39,12 @@ function SettingsModal({ modalFunction, isDark, animation, data, setIsDark, play
                         </div>
                         <div className='flex justify-center w-full items-center border-b border-neutral-500 opacity-20 my-2'></div>
 
-                        <div className='flex justify-between w-full'>
-                            <div >Hard Mode</div>
+                        <div className='flex justify-between w-full opacity-40'>
+                            <div className=' w-full' >Hard Mode</div>
+                            <div className='pointer-events-none'>
+
                             <Toggle isDark={isDark} />
+                            </div>
                         </div>
                         <div className='flex justify-center w-full items-center border-b border-neutral-500 opacity-20 my-2'></div>
                         <div className='w-full text-sm pt-1 '>
