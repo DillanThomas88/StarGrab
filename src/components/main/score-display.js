@@ -25,7 +25,7 @@ function ScoreDisplay({ score, isDark }) {
                 // clearInterval(interval)
                 if (x !== score) {
                     x++
-                    console.log(x, score);
+                    // console.log(x, score);
                     setCount(data => data + 1)
 
                 } else {

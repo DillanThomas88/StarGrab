@@ -146,16 +146,16 @@ function Main({ setHighScore, highScore, isDark, css, setPlayerData }) {
                         <Timer data={{ timer, handletimerReset }} setIsDisabled={setIsDisabled} handleLocalStorage={handleLocalStorage} handleFoldingAnimations={handleFoldingAnimations} isDark={isDark} />
 
                     </div>
-                    <div className='relative w-20'>
+                    <div className='relative w-24 h-20'>
 
                         <button onClick={handleNewCards}
                             disabled={isDisabled ? true : tally !== state.randomNum ? true : false}
-                            className={isDark ? `absolute z-40 w-full h-full flex flex-col rounded-lg flex justify-start items-center bg-white text-neutral-900 mb-1` : `absolute z-40 w-full h-full flex flex-col rounded-lg flex justify-start items-center bg-neutral-800 text-white mb-1`}>
-                            <div className='border-b border-neutral-500 text-sm'>{tally}</div>
+                            className={isDark ? `absolute z-40 w-full h-full flex flex-col rounded-lg flex justify-center items-center bg-white text-neutral-900 mb-1` : `absolute z-40 w-full h-full flex flex-col rounded-lg flex justify-center items-center bg-neutral-800 text-white`}>
+                            <div className='border-b border-neutral-500 text-lg'>{tally}</div>
 
                             <div className='w-full text-center text-4xl'>{state.randomNum}</div>
                         </button>
-                        <div className={`${tally === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-transparent border border-neutral-500 rounded-lg z-10 mb-1`}></div>
+                        <div className={`${tally === state.randomNum && 'animate-collect'} absolute top-0 w-full h-full pointer-events-none bg-transparent border-4 border-neutral-500 rounded-lg z-10`}></div>
 
                     </div>
                     <div className={`flex text-neutral-500 h-16 flex-col justify-start items-start `}>

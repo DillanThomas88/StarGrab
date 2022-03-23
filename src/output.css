@@ -536,6 +536,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1.25rem;
 }
 
+.my-1{
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .mb-4{
   margin-bottom: 1rem;
 }
@@ -588,12 +593,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100%;
 }
 
+.h-24{
+  height: 6rem;
+}
+
 .h-16{
   height: 4rem;
 }
 
 .h-32{
   height: 8rem;
+}
+
+.h-40{
+  height: 10rem;
 }
 
 .h-1{
@@ -626,6 +639,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2.5rem;
 }
 
+.h-20{
+  height: 5rem;
+}
+
 .w-full{
   width: 100%;
 }
@@ -634,8 +651,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 3.5rem;
 }
 
-.w-20{
-  width: 5rem;
+.w-24{
+  width: 6rem;
 }
 
 .w-screen{
@@ -644,10 +661,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-32{
   width: 8rem;
-}
-
-.w-24{
-  width: 6rem;
 }
 
 .w-1{
@@ -1260,6 +1273,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 2px;
 }
 
+.border-4{
+  border-width: 4px;
+}
+
+.border-8{
+  border-width: 8px;
+}
+
 .border-b{
   border-bottom-width: 1px;
 }
@@ -1504,6 +1525,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.75rem;
 }
 
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .font-medium{
   font-weight: 500;
 }
@@ -1543,24 +1569,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-yellow-500{
+  --tw-text-opacity: 1;
+  color: rgb(234 179 8 / var(--tw-text-opacity));
+}
+
 .text-green-500{
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
-.text-teal-500{
+.text-teal-400{
   --tw-text-opacity: 1;
-  color: rgb(20 184 166 / var(--tw-text-opacity));
+  color: rgb(45 212 191 / var(--tw-text-opacity));
 }
 
-.text-sky-400{
+.text-sky-500{
   --tw-text-opacity: 1;
-  color: rgb(56 189 248 / var(--tw-text-opacity));
-}
-
-.text-indigo-500{
-  --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
+  color: rgb(14 165 233 / var(--tw-text-opacity));
 }
 
 .text-fuchsia-500{
@@ -1611,21 +1637,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-neutral-100{
   --tw-text-opacity: 1;
   color: rgb(245 245 245 / var(--tw-text-opacity));
-}
-
-.text-yellow-500{
-  --tw-text-opacity: 1;
-  color: rgb(234 179 8 / var(--tw-text-opacity));
-}
-
-.text-teal-400{
-  --tw-text-opacity: 1;
-  color: rgb(45 212 191 / var(--tw-text-opacity));
-}
-
-.text-sky-500{
-  --tw-text-opacity: 1;
-  color: rgb(14 165 233 / var(--tw-text-opacity));
 }
 
 .opacity-10{
