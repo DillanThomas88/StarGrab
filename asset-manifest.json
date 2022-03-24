@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/stargrip/static/css/main.5672db5b.css",
-    "main.js": "/stargrip/static/js/main.0853a9d8.js",
+    "main.css": "/stargrip/static/css/main.4b2d24a4.css",
+    "main.js": "/stargrip/static/js/main.bebbf8b2.js",
     "static/js/787.ca78f21f.chunk.js": "/stargrip/static/js/787.ca78f21f.chunk.js",
     "static/media/pretty.svg": "/stargrip/static/media/pretty.d67dfbf4b7323dd4b225b7bbb97f8e3b.svg",
     "static/media/diamond.svg": "/stargrip/static/media/diamond.099e8701e926ec73c6ab2223df175d98.svg",
@@ -9,7 +9,6 @@
     "static/media/simple.svg": "/stargrip/static/media/simple.97426e9b73f303622ec39c6370d69b27.svg",
     "static/media/rays.svg": "/stargrip/static/media/rays.fab27f8a75c82d0a5ad0bf3f675777cc.svg",
     "index.html": "/stargrip/index.html",
-    "static/media/settings.svg": "/stargrip/static/media/settings.ceca2a89c31a908f933b372b3d9940e2.svg",
     "static/media/star.svg": "/stargrip/static/media/star.128b188bb0fcdb417a510ac48fb4fa98.svg",
     "static/media/icos.svg": "/stargrip/static/media/icos.3e17afc8b2ca9295642365d22182e8c6.svg",
     "static/media/notequal.svg": "/stargrip/static/media/notequal.1435f2131d90ff6825387f0732baec7a.svg",
@@ -17,20 +16,17 @@
     "static/media/question.svg": "/stargrip/static/media/question.6912fa60a1a8575639fa39a6e3eaefa5.svg",
     "static/media/equal.svg": "/stargrip/static/media/equal.cd22ddab0a4194e76a7ee61e4b61a244.svg",
     "static/media/lock.svg": "/stargrip/static/media/lock.d5231c62ef519b271337f97af8bd2c89.svg",
-    "static/media/close-left.svg": "/stargrip/static/media/close-left.0a84c6ec0cd75d31ef6192901d94aee9.svg",
     "static/media/unlock.svg": "/stargrip/static/media/unlock.36e5fdf0da85680b041ab6105fe18502.svg",
     "static/media/menu.svg": "/stargrip/static/media/menu.675bf562dae57efabb1329e5b7c9c682.svg",
-    "static/media/close-right.svg": "/stargrip/static/media/close-right.0a76a8c044b600f942b67581e08f3b8e.svg",
-    "static/media/friends.svg": "/stargrip/static/media/friends.afa326ec71b8ca59d26c8b503a9e90e9.svg",
     "static/media/close.svg": "/stargrip/static/media/close.67b3b7a61fd1ea9a68e41acb4d2c4e6e.svg",
     "static/media/pause.svg": "/stargrip/static/media/pause.7ca7f7a2220289bc93e92e13ce122923.svg",
     "static/media/play.svg": "/stargrip/static/media/play.9528a76730dd9a708cba15e7329b0ecb.svg",
-    "main.5672db5b.css.map": "/stargrip/static/css/main.5672db5b.css.map",
-    "main.0853a9d8.js.map": "/stargrip/static/js/main.0853a9d8.js.map",
+    "main.4b2d24a4.css.map": "/stargrip/static/css/main.4b2d24a4.css.map",
+    "main.bebbf8b2.js.map": "/stargrip/static/js/main.bebbf8b2.js.map",
     "787.ca78f21f.chunk.js.map": "/stargrip/static/js/787.ca78f21f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5672db5b.css",
-    "static/js/main.0853a9d8.js"
+    "static/css/main.4b2d24a4.css",
+    "static/js/main.bebbf8b2.js"
   ]
 }
