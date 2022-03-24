@@ -448,7 +448,7 @@ function Main({ setHighScore, highScore, isDark, css, setPlayerData }) {
                 <div className={isDark ? 'text-white pointer-events-none' : 'text-neutral-700 pointer-events-none'}>Scramble</div>
                 <div className={isDark ? 'w-2 h-2 animate-throb bg-neutral-100 rounded-full mx-2' : 'w-2 h-2 animate-throb bg-neutral-600 rounded-full mx-2'}></div>
                 <div className={isDark ? 'w-1 h-1 animate-throb bg-neutral-100 rounded-full' : 'w-1 h-1 animate-throb bg-neutral-600 rounded-full'}></div>
-                <div className={isDark ? 'absolute pointer-events-none -bottom-3 text-xs normal-case text-white' : 'absolute pointer-events-none -bottom-3 text-xs normal-case text-neutral-700'}>1x</div>
+                <div className={isDark ? 'absolute animate-throb pointer-events-none -bottom-3 text-xs normal-case text-white' : 'absolute animate-throb pointer-events-none -bottom-3 text-xs normal-case text-neutral-700'}>1x</div>
 
             </div>
         </div>
