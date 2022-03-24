@@ -117,14 +117,12 @@ function App() {
     document.title = 'Star Grab | downtogame.com'
   }, [])
 
+  console.log();
+
   return (
     <div className={isDark ? styleObj.dark.style : styleObj.light.style}>
       <div className={` font-default  select-none overflow-y-scroll lg:overflow-y-hidden`}
         style={{ height: window.innerHeight }}>
-
-        {renderHeader()}
-        {renderMain()}
-        
         {isModalActive &&
           <StarterModal
 
@@ -141,7 +139,12 @@ function App() {
             isDark={isDark}
             setIsDark={setIsDark}
             playerData={playerData} />}
+            
+        {renderHeader()}
+        {renderMain()}
       </div>
+        
+
     </div>
   );
 
