@@ -91,7 +91,7 @@ function Main({ setHighScore, highScore, isDark, css, setPlayerData }) {
         });
         settiles(board)
         setCollection(starTotal)
-        HandleCounter('reset')
+        renderTimerTargetNumAndStarCount('reset')
 
     }
 
@@ -108,7 +108,7 @@ function Main({ setHighScore, highScore, isDark, css, setPlayerData }) {
         }
     }
 
-    const HandleCounter = (x) => {
+    const renderTimerTargetNumAndStarCount = (x) => {
         let tally = 0
         const selectedTiles = document.querySelectorAll('.selected')
         selectedTiles.forEach(element => {
@@ -416,68 +416,76 @@ function Main({ setHighScore, highScore, isDark, css, setPlayerData }) {
 
     return (
         <div className="grid content-center justify-center w-screen">
-
             <div className='relative'>
-                <div onClick={() => handleFoldingAnimations()}
-                    className='board z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
+                {renderStartOverlay()}
 
-                    <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
-                        <div className='animate-pulse z-50 '>Touch Screen to start</div>
-                        {/* <div className='w-full h-14 flex justify-center'>
-                            <Icon data={{ desc: 'lock' }} />
-                        </div> */}
-
-                    </div>
-                </div>
                 <div className='grid w-full justify-center content-center'>
-                    <div onClick={(e) => handleSelected(e)}
-                        className={isDisabled ? `pointer-events-none opacity-30 select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative` : `cursor-auto select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
-                        {tiles.map((data, index) => {
-                            return (<div className='tile' key={index} >{data}</div>)
-                        })}
-                    </div>
-                    {hasStarted && isDisabled && <>
-                        <div className='absolute animate-fadeInSlow grid content-center justify-center w-full h-full'>
-                            <div className=' uppercase flex justify-center flex justify-center items-center'>
-                                <button onClick={() => window.location.reload()}
-                                    className='uppercase relative w-32 h-32 flex justify-center items-center rounded-md'>
-                                    <Icon data={{ desc: 'restart' }} type={isDark ? 'animate-throb h-full w-full fill-white pointer-events-none' : 'animate-throb h-full w-full fill-neutral-700 pointer-events-none'} />
-                                    <div className={isDark ? ' text-white absolute  flex justify-center items-center text-xs font-medium pt-2 pointer-events-none' : 'absolute flex justify-center items-center text-xs font-medium pt-2 pointer-events-none'}>Play<br></br> again</div>
-                                </button>
-                            </div>
-                        </div>
-                    </>}
-
+                    {renderTiles()}
+                    {hasStarted && isDisabled && renderEndOverlay()}
                 </div>
             </div>
 
             <div className='pt-1 font-semibold'>
-                {HandleCounter()}
+                {renderTimerTargetNumAndStarCount()}
             </div>
 
             <div className='text-white flex justify-center items-center mt-2 text-2xl'>
-
-                <div onClick={(e) => handleSuper(e)}
-                    className={superBtn ? 'w-24 uppercase h-14 flex justify-center items-center rounded-lg font-semibold opacity-0' : 'animate-fadeInSlow bg-transparent uppercase w-14 h-14 flex justify-center items-center rounded-lg font-semibold '}>
-                    <div className='flex justify-center items-center'>
-                        <div className={isDark ? 'w-1 h-1 animate-throb bg-neutral-100 rounded-full' :'w-1 h-1 animate-throb bg-neutral-600 rounded-full'}></div>
-                        <div className={isDark ? 'w-2 h-2 animate-throb bg-neutral-100 rounded-full mx-2' :'w-2 h-2 animate-throb bg-neutral-600 rounded-full mx-2'}></div>
-                        <div className={isDark ? 'text-white pointer-events-none' : 'text-neutral-700 pointer-events-none'}>Super</div>
-                        <div className={isDark ? 'w-2 h-2 animate-throb bg-neutral-100 rounded-full mx-2' :'w-2 h-2 animate-throb bg-neutral-600 rounded-full mx-2'}></div>
-                        <div className={isDark ? 'w-1 h-1 animate-throb bg-neutral-100 rounded-full' :'w-1 h-1 animate-throb bg-neutral-600 rounded-full'}></div>
-
-                    </div>
-                </div>
-
-
+                {renderSuperBTN()}
             </div>
-
 
 
         </div>
     )
 
 
+
+    function renderSuperBTN() {
+        return <div onClick={(e) => handleSuper(e)}
+            className={superBtn ? 'w-24 uppercase h-14 flex justify-center items-center rounded-lg font-semibold opacity-0' : 'animate-fadeInSlow bg-transparent uppercase w-14 h-14 flex justify-center items-center rounded-lg font-semibold '}>
+            <div className='relative flex justify-center items-center'>
+                <div className={isDark ? 'w-1 h-1 animate-throb bg-neutral-100 rounded-full' : 'w-1 h-1 animate-throb bg-neutral-600 rounded-full'}></div>
+                <div className={isDark ? 'w-2 h-2 animate-throb bg-neutral-100 rounded-full mx-2' : 'w-2 h-2 animate-throb bg-neutral-600 rounded-full mx-2'}></div>
+                <div className={isDark ? 'text-white pointer-events-none' : 'text-neutral-700 pointer-events-none'}>Scramble</div>
+                <div className={isDark ? 'w-2 h-2 animate-throb bg-neutral-100 rounded-full mx-2' : 'w-2 h-2 animate-throb bg-neutral-600 rounded-full mx-2'}></div>
+                <div className={isDark ? 'w-1 h-1 animate-throb bg-neutral-100 rounded-full' : 'w-1 h-1 animate-throb bg-neutral-600 rounded-full'}></div>
+                <div className='absolute  -bottom-3 text-xs normal-case'>1x</div>
+
+            </div>
+        </div>
+    }
+
+    function renderEndOverlay() {
+        return <div className='absolute animate-fadeInSlow grid content-center justify-center w-full h-full'>
+            <div className=' uppercase flex justify-center flex justify-center items-center'>
+                <button onClick={() => window.location.reload()}
+                    className='uppercase relative w-32 h-32 flex justify-center items-center rounded-md'>
+                    <Icon data={{ desc: 'restart' }} type={isDark ? 'animate-throb h-full w-full fill-white pointer-events-none' : 'animate-throb h-full w-full fill-neutral-700 pointer-events-none'} />
+                    <div className={isDark ? ' text-white absolute  flex justify-center items-center text-xs font-medium pt-2 pointer-events-none' : 'absolute flex justify-center items-center text-xs font-medium pt-2 pointer-events-none'}>Play<br></br> again</div>
+                </button>
+            </div>
+        </div>
+    }
+
+    function renderTiles() {
+        return <div onClick={(e) => handleSelected(e)}
+            className={isDisabled ? `pointer-events-none opacity-30 select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative` : `cursor-auto select-none the-board grid ${rows, cols} gap-1 md:gap-2 lg:gap-1 relative`}>
+            {tiles.map((data, index) => {
+                return (<div className='tile' key={index}>{data}</div>)
+            })}
+        </div>
+    }
+
+    function renderStartOverlay() {
+        return <div onClick={() => handleFoldingAnimations()}
+            className='board z-40 text-xl absolute uppercase grid content-center justify-center w-full h-full'>
+
+            <div className='text-sm font-bold px-4 py-2 pointer-events-none'>
+                <div className='animate-pulse z-50 '>
+                    Touch Screen to start
+                </div>
+            </div>
+        </div>
+    }
 }
 
 export default Main
