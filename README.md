@@ -1,4 +1,4 @@
-# StarGrip
+# Star Grab
 
 > Work in Progress
 
